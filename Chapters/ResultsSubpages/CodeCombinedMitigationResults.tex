@@ -1,0 +1,52 @@
+\begin{table}[H]
+\centering
+\caption{Benchmarks and Task-specific evaluation results for Mitigation runs of Code Generation use case}
+\begin{tabular}{|c|l|l|l|l|l|l|}
+\hline
+\multicolumn{1}{|l|}{\textbf{Evaluation}}  & \textbf{Dataset} & N   & \textbf{pre\_eval} & \textbf{post\_eval1} & \textbf{post\_eval2} & \textbf{post\_eval3} \\ \hline
+\multirow{3}{*}{HumanEval   (+ MultiPL-E)} & C++              & 80  & 0.6375             & 0.5375               & 0.4927               & 0.4521               \\ \cline{2-7} 
+                                           & Java             & 80  & 0.6438             & 0.5313               & 0.4740               & 0.4042               \\ \cline{2-7} 
+                                           & Python           & 80  & 0.7688             & 0.6875               & 0.6167               & 0.6167               \\ \hline
+CoNaLa                                     & CoNaLa           & 100 & 0.2162             & 0.2200               & 0.2165               & 0.2041               \\ \hline
+\multirow{2}{*}{cg}                        & Test             & 500 & 0.0463             & 0.0847               & 0.1258               & 0.1558               \\ \cline{2-7} 
+                                           & Validation       & 501 & 0.0419             & 0.0813               & 0.1198               & 0.1576               \\ \hline
+\multirow{2}{*}{utg}                       & Test             & 48  & 0.1143             & 0.1108               & 0.1189               & 0.1272               \\ \cline{2-7} 
+                                           & Validation       & 48  & 0.1527             & 0.1588               & 0.1685               & 0.1821               \\ \hline
+\multirow{2}{*}{mg}                        & Test             & 145 & 0.0349             & 0.0475               & 0.0484               & 0.0539               \\ \cline{2-7} 
+                                           & Validation       & 146 & 0.0364             & 0.0414               & 0.0415               & 0.0443               \\ \hline
+\end{tabular}
+\label{tab:CodeMitigationCombined}
+\end{table}
+
+
+
+% \begin{table}[htbp]
+% \centering
+% \caption{Benchmarks and Task-specific evaluation results for Mitigation runs of Code Generation use case}
+% \begin{tabular}{|p{4.5cm}|l|r|r|r|r|}
+% \hline
+% Evaluation & Dataset & pre\_eval & post\_eval1 & post\_eval2 & post\_eval3 \\
+% \hline
+% \multirow{3}{*}{HumanEval (+ MultiPL-E)} & C++ & 0.6375 & 0.5375 & 0.492708 & 0.452083 \\
+% \cline{2-6}
+% & Java & 0.64375 & 0.53125 & 0.473958 & 0.404167 \\
+% \cline{2-6}
+% & Python & 0.76875 & 0.6875 & 0.616667 & 0.616667 \\
+% \hline
+% CoNaLa & CoNaLa & 0.216249 & 0.219995 & 0.216476 & 0.204121 \\
+% \hline
+% \multirow{2}{*}{cg} & Test & 0.046312 & 0.084672 & 0.125814 & 0.155808 \\
+% \cline{2-6}
+% & Validation & 0.041909 & 0.081297 & 0.119771 & 0.157552 \\
+% \hline
+% \multirow{2}{*}{utg} & Test & 0.114348 & 0.110808 & 0.118915 & 0.127154 \\
+% \cline{2-6}
+% & Validation & 0.152672 & 0.158781 & 0.168485 & 0.182078 \\
+% \hline
+% \multirow{2}{*}{mg} & Test & 0.034924 & 0.047484 & 0.048441 & 0.053857 \\
+% \cline{2-6}
+% & Validation & 0.03639 & 0.041367 & 0.041492 & 0.044294 \\
+% \hline
+% \end{tabular}
+% \label{tab:CodeMitigationCombined}
+% \end{table}

@@ -1,0 +1,35 @@
+% \begin{table}[h!]
+% \centering
+% \caption{Benchmarks and Task-specific evaluation results for Baseline runs of Natural Language Generation use case}
+% \begin{tabular}{|l|l|S[table-format=2.4]|S[table-format=2.4]|S[table-format=2.4]|S[table-format=2.4]|}
+% \hline
+% \textbf{Evaluation} & \textbf{Dataset} & \textbf{pre\_eval} & \textbf{post\_eval1} & \textbf{post\_eval2} & \textbf{post\_eval3} \\ \hline
+% ARC-Challenge & ARC-Challenge & 0.759385666 & 0.736916951 & 0.70847554 & 0.711035267 \\ \hline
+% GSM8K & GSM8K & 0.790909091 & 0.765151515 & 0.762373737 & 0.751515152 \\ \hline
+% \multirow{2}{*}{qa} & Test & 0.826 & 0.869333333 & 0.885 & 0.896 \\ \cline{2-6}
+%                     & Validation & 0.758 & 0.821333333 & 0.842666667 & 0.857 \\ \hline
+% \multirow{2}{*}{summ} & Test & 0.294261402 & 0.301425965 & 0.304687384 & 0.308262634 \\ \cline{2-6}
+%                       & Validation & 0.297310372 & 0.304382296 & 0.307580755 & 0.311534812 \\ \hline
+% \multirow{2}{*}{math} & Test & 0.729559748 & 0.742138365 & 0.676100629 & 0.705450734 \\ \cline{2-6}
+%                       & Validation & 0.74375 & 0.7 & 0.666666667 & 0.70625 \\ \hline
+% \end{tabular}
+% \label{tab:TraceBaselineCombined}
+% \end{table}
+
+\begin{table}[H]
+\centering
+\caption{Benchmarks and Task-specific evaluation results for Baseline runs of Natural Language Generation use case}
+\begin{tabular}{|c|l|l|l|l|l|l|}
+\hline
+\multicolumn{1}{|l|}{Evaluation} & Dataset       & N & pre\_eval & post\_eval1 & post\_eval2 & post\_eval3 \\ \hline
+ARC-Challenge                    & ARC-Challenge & 1172            & 0.7594    & 0.7369      & 0.7085      & 0.7110      \\ \hline
+GSM8K                            & GSM8K         & 660             & 0.7909    & 0.7652      & 0.7624      & 0.7515      \\ \hline
+\multirow{2}{*}{qa}              & Test          & 500             & 0.8260    & 0.8693      & 0.8850      & 0.8960      \\ \cline{2-7} 
+                                 & Validation    & 500             & 0.7580    & 0.8213      & 0.8427      & 0.8570      \\ \hline
+\multirow{2}{*}{summ}            & Test          & 76              & 0.2943    & 0.3014      & 0.3047      & 0.3083      \\ \cline{2-7} 
+                                 & Validation    & 77              & 0.2973    & 0.3044      & 0.3076      & 0.3115      \\ \hline
+\multirow{2}{*}{math}            & Test          & 159             & 0.7296    & 0.7421      & 0.6761      & 0.7055      \\ \cline{2-7} 
+                                 & Validation    & 160             & 0.7438    & 0.7000      & 0.6667      & 0.7063      \\ \hline
+\end{tabular}
+\label{tab:TraceBaselineCombined}
+\end{table}

@@ -1,0 +1,35 @@
+\begin{table}[H]
+\caption{Standard deviations across task order ablations: Baseline}
+\begin{tabular}{|c|l|l|llll|}
+\hline
+\multirow{2}{*}{Evaluation} & \multicolumn{1}{c|}{\multirow{2}{*}{Dataset}} & \multicolumn{1}{c|}{\multirow{2}{*}{N}} & \multicolumn{4}{c|}{Standard   Deviation}                                                                          \\ \cline{4-7} 
+                            & \multicolumn{1}{c|}{}                         & \multicolumn{1}{c|}{}                   & \multicolumn{1}{l|}{pre\_eval} & \multicolumn{1}{l|}{post\_eval1} & \multicolumn{1}{l|}{post\_eval2} & post\_eval3 \\ \hline
+ARC-Challenge               & ARC-Challenge                                 & 1172                                    & \multicolumn{1}{l|}{0}         & \multicolumn{1}{l|}{0.0323}      & \multicolumn{1}{l|}{0.0608}      & 0.0267      \\ \hline
+GSM8K                       & GSM8K                                         & 660                                     & \multicolumn{1}{l|}{0}         & \multicolumn{1}{l|}{0.0155}      & \multicolumn{1}{l|}{0.0228}      & 0.0166      \\ \hline
+\multirow{2}{*}{qa}         & Test                                          & 500                                     & \multicolumn{1}{l|}{0}         & \multicolumn{1}{l|}{0.0340}      & \multicolumn{1}{l|}{0.0161}      & 0.0135      \\ \cline{2-7} 
+                            & Validation                                    & 500                                     & \multicolumn{1}{l|}{0}         & \multicolumn{1}{l|}{0.0467}      & \multicolumn{1}{l|}{0.0196}      & 0.0181      \\ \hline
+\multirow{2}{*}{summ}       & Test                                          & 76                                      & \multicolumn{1}{l|}{0}         & \multicolumn{1}{l|}{0.0074}      & \multicolumn{1}{l|}{0.0097}      & 0.0019      \\ \cline{2-7} 
+                            & Validation                                    & 77                                      & \multicolumn{1}{l|}{0}         & \multicolumn{1}{l|}{0.0076}      & \multicolumn{1}{l|}{0.0079}      & 0.0026      \\ \hline
+\multirow{2}{*}{math}       & Test                                          & 159                                     & \multicolumn{1}{l|}{0}         & \multicolumn{1}{l|}{0.0308}      & \multicolumn{1}{l|}{0.1077}      & 0.0534      \\ \cline{2-7} 
+                            & Validation                                    & 160                                     & \multicolumn{1}{l|}{0}         & \multicolumn{1}{l|}{0.0736}      & \multicolumn{1}{l|}{0.1129}      & 0.0415      \\ \hline
+\end{tabular}
+\label{TraceBaselineStdDev}
+\end{table}
+
+\begin{table}[H]
+\caption{Standard deviations across task order ablations: Mitigation}
+\begin{tabular}{|c|l|l|llll|}
+\hline
+\multirow{2}{*}{Evaluation} & \multicolumn{1}{c|}{\multirow{2}{*}{Dataset}} & \multicolumn{1}{c|}{\multirow{2}{*}{N}} & \multicolumn{4}{c|}{Standard   Deviation}                                                                          \\ \cline{4-7} 
+                            & \multicolumn{1}{c|}{}                         & \multicolumn{1}{c|}{}                                 & \multicolumn{1}{l|}{pre\_eval} & \multicolumn{1}{l|}{post\_eval1} & \multicolumn{1}{l|}{post\_eval2} & post\_eval3 \\ \hline
+ARC-Challenge               & ARC-Challenge                                 & 1172                                                  & \multicolumn{1}{l|}{0}         & \multicolumn{1}{l|}{0.0251}      & \multicolumn{1}{l|}{0.0254}      & 0.0177      \\ \hline
+GSM8K                       & GSM8K                                         & 660                                                   & \multicolumn{1}{l|}{0}         & \multicolumn{1}{l|}{0.0056}      & \multicolumn{1}{l|}{0.0113}      & 0.0093      \\ \hline
+\multirow{2}{*}{qa}         & Test                                          & 500                                                   & \multicolumn{1}{l|}{0}         & \multicolumn{1}{l|}{0.0189}      & \multicolumn{1}{l|}{0.0078}      & 0.0466      \\ \cline{2-7} 
+                            & Validation                                    & 500                                                   & \multicolumn{1}{l|}{0}         & \multicolumn{1}{l|}{0.0082}      & \multicolumn{1}{l|}{0.0076}      & 0.0160      \\ \hline
+\multirow{2}{*}{summ}       & Test                                          & 76                                                    & \multicolumn{1}{l|}{0}         & \multicolumn{1}{l|}{0.0094}      & \multicolumn{1}{l|}{0.0091}      & 0.0041      \\ \cline{2-7} 
+                            & Validation                                    & 77                                                    & \multicolumn{1}{l|}{0}         & \multicolumn{1}{l|}{0.0098}      & \multicolumn{1}{l|}{0.0084}      & 0.0040      \\ \hline
+\multirow{2}{*}{math}       & Test                                          & 159                                                   & \multicolumn{1}{l|}{0}         & \multicolumn{1}{l|}{0.0292}      & \multicolumn{1}{l|}{0.0562}      & 0.0255      \\ \cline{2-7} 
+                            & Validation                                    & 160                                                   & \multicolumn{1}{l|}{0}         & \multicolumn{1}{l|}{0.0463}      & \multicolumn{1}{l|}{0.0325}      & 0.0322      \\ \hline
+\end{tabular}
+\label{TraceMitigationStdDev}
+\end{table}

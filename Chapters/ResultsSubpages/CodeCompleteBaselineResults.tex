@@ -1,0 +1,159 @@
+\begin{table}[!ht]
+    \centering
+    \caption{Performance on the C++ dataset of HumanEval (+ MultiPL-E) benchmark across ablations for Baseline runs}
+    \begin{tabular}{|l|l|S[table-format=2.4]|S[table-format=2.4]|S[table-format=2.4]|S[table-format=2.4]|}
+    \hline
+        \textbf{Ablation} & \textbf{Task order} & \textbf{pre\_eval} & \textbf{post\_eval1} & \textbf{post\_eval2} & \textbf{post\_eval3 } \\ \hline
+        Ablation 1 & cg-utg-mg & 0.6375 & 0.525 & 0.4625 & 0.45625  \\ 
+        Ablation 2 & cg-mg-utg & 0.6375 & 0.525 & 0.50625 & 0.43125  \\ 
+        Ablation 3 & utg-cg-mg & 0.6375 & 0.30625 & 0.55 & 0.48125  \\ 
+        Ablation 4 & utg-mg-cg & 0.6375 & 0.30625 & 0.38125 & 0.38125  \\ 
+        Ablation 5 & mg-cg-utg & 0.6375 & 0.54375 & 0.50625 & 0.45  \\ 
+        Ablation 6 & mg-utg-cg & 0.6375 & 0.54375 & 0.50625 & 0.3875 \\ \hline
+    \end{tabular}
+    \label{tab:CppBaseline}
+\end{table}
+
+\begin{table}[!ht]
+    \centering
+    \caption{Performance on the Java dataset of HumanEval (+ MultiPL-E) benchmark across ablations for Baseline runs}
+    \begin{tabular}{|l|l|S[table-format=2.4]|S[table-format=2.4]|S[table-format=2.4]|S[table-format=2.4]|}
+    \hline
+        \textbf{Ablation} & \textbf{Task order} & \textbf{pre\_eval} & \textbf{post\_eval1} & \textbf{post\_eval2} & \textbf{post\_eval3 } \\ \hline
+        Ablation 1 & cg-utg-mg & 0.64375 & 0.5 & 0.475 & 0.2625  \\ 
+        Ablation 2 & cg-mg-utg & 0.64375 & 0.5 & 0.325 & 0.3875  \\ 
+        Ablation 3 & utg-cg-mg & 0.64375 & 0.54375 & 0.575 & 0.33125  \\ 
+        Ablation 4 & utg-mg-cg & 0.64375 & 0.54375 & 0.4 & 0.475  \\ 
+        Ablation 5 & mg-cg-utg & 0.64375 & 0.5625 & 0.40625 & 0.34375  \\ 
+        Ablation 6 & mg-utg-cg & 0.64375 & 0.5625 & 0.475 & 0.5 \\ \hline
+    \end{tabular}
+    \label{tab:JavaBaseline}
+\end{table}
+
+\begin{table}[!ht]
+    \centering
+    \caption{Performance on the Python dataset of HumanEval (+ MultiPL-E) benchmark across ablations for Baseline runs}
+    \begin{tabular}{|l|l|S[table-format=2.4]|S[table-format=2.4]|S[table-format=2.4]|S[table-format=2.4]|}
+    \hline
+        \textbf{Ablation} & \textbf{Task order} & \textbf{pre\_eval} & \textbf{post\_eval1} & \textbf{post\_eval2} & \textbf{post\_eval3 } \\ \hline
+        Ablation 1 & cg-utg-mg & 0.76875 & 0.66875 & 0.6125 & 0.65  \\ 
+        Ablation 2 & cg-mg-utg & 0.76875 & 0.66875 & 0.65625 & 0.6375  \\ 
+        Ablation 3 & utg-cg-mg & 0.76875 & 0.7 & 0.64375 & 0.65625  \\ 
+        Ablation 4 & utg-mg-cg & 0.76875 & 0.7 & 0.6875 & 0.675  \\ 
+        Ablation 5 & mg-cg-utg & 0.76875 & 0.71875 & 0.41875 & 0.5875  \\ 
+        Ablation 6 & mg-utg-cg & 0.76875 & 0.71875 & 0.6375 & 0.6625 \\ \hline
+    \end{tabular}
+    \label{tab:PythonBaseline}
+\end{table}
+
+\begin{table}[!ht]
+    \centering
+    \caption{Performance on the CoNaLa benchmark across ablations for Baseline runs}
+    \begin{tabular}{|l|l|S[table-format=2.4]|S[table-format=2.4]|S[table-format=2.4]|S[table-format=2.4]|}
+    \hline
+        \textbf{Ablation} & \textbf{Task order} & \textbf{pre\_eval} & \textbf{post\_eval1} & \textbf{post\_eval2} & \textbf{post\_eval3 } \\ \hline
+        Ablation 1 & cg-utg-mg & 0.216249 & 0.212248 & 0.21981 & 0.2039585  \\ 
+        Ablation 2 & cg-mg-utg & 0.216249 & 0.212248 & 0.209731 & 0.198182  \\ 
+        Ablation 3 & utg-cg-mg & 0.216249 & 0.220624 & 0.210697 & 0.2047265  \\ 
+        Ablation 4 & utg-mg-cg & 0.216249 & 0.220624 & 0.213846 & 0.206291  \\ 
+        Ablation 5 & mg-cg-utg & 0.216249 & 0.2204505 & 0.197515 & 0.2002515  \\ 
+        Ablation 6 & mg-utg-cg & 0.216249 & 0.2204505 & 0.2088005 & 0.202889 \\ \hline
+    \end{tabular}
+    \label{tab:CoNaLaBaseline}
+\end{table}
+
+\begin{table}[!ht]
+    \centering
+    \caption{Performance on the Test set of Code Generation in C++ task across ablations for Baseline runs}
+    \begin{tabular}{|l|l|S[table-format=2.4]|S[table-format=2.4]|S[table-format=2.4]|S[table-format=2.4]|}
+    \hline
+        \textbf{Ablation} & \textbf{Task order} & \textbf{pre\_eval} & \textbf{post\_eval1} & \textbf{post\_eval2} & \textbf{post\_eval3 } \\ \hline
+        Ablation 1 & cg-utg-mg & 0.0463115 & 0.1349755 & 0.1361555 & 0.138237  \\ 
+        Ablation 2 & cg-mg-utg & 0.0463115 & 0.1349755 & 0.1371045 & 0.1271735  \\ 
+        Ablation 3 & utg-cg-mg & 0.0463115 & 0.0374325 & 0.152484 & 0.1472625  \\ 
+        Ablation 4 & utg-mg-cg & 0.0463115 & 0.0374325 & 0.0601475 & 0.150081  \\ 
+        Ablation 5 & mg-cg-utg & 0.0463115 & 0.0538245 & 0.1391325 & 0.133467  \\ 
+        Ablation 6 & mg-utg-cg & 0.0463115 & 0.0538245 & 0.0571485 & 0.1387905 \\ \hline
+    \end{tabular}
+    \label{tab:CodeGenTestBaseline}
+\end{table}
+
+\begin{table}[!ht]
+    \centering
+    \caption{Performance on the Validation set of Code Generation in C++ task across ablations for Baseline runs}
+    \begin{tabular}{|l|l|S[table-format=2.4]|S[table-format=2.4]|S[table-format=2.4]|S[table-format=2.4]|}
+    \hline
+        \textbf{Ablation} & \textbf{Task order} & \textbf{pre\_eval} & \textbf{post\_eval1} & \textbf{post\_eval2} & \textbf{post\_eval3 } \\ \hline
+        Ablation 1 & cg-utg-mg & 0.0419085 & 0.142302 & 0.1274795 & 0.126582  \\ 
+        Ablation 2 & cg-mg-utg & 0.0419085 & 0.142302 & 0.1423165 & 0.12579  \\ 
+        Ablation 3 & utg-cg-mg & 0.0419085 & 0.037424 & 0.1552265 & 0.144193  \\ 
+        Ablation 4 & utg-mg-cg & 0.0419085 & 0.037424 & 0.052555 & 0.1480245  \\ 
+        Ablation 5 & mg-cg-utg & 0.0419085 & 0.049976 & 0.1527795 & 0.1394835  \\ 
+        Ablation 6 & mg-utg-cg & 0.0419085 & 0.049976 & 0.057314 & 0.1432045 \\ \hline
+    \end{tabular}
+    \label{tab:CodeGenValBaseline}
+\end{table}
+
+\begin{table}[!ht]
+    \centering
+    \caption{Performance on the Test set of Unit Test Generation in task across ablations for Baseline runs}
+    \begin{tabular}{|l|l|S[table-format=2.4]|S[table-format=2.4]|S[table-format=2.4]|S[table-format=2.4]|}
+    \hline
+        \textbf{Ablation} & \textbf{Task order} & \textbf{pre\_eval} & \textbf{post\_eval1} & \textbf{post\_eval2} & \textbf{post\_eval3 } \\ \hline
+        Ablation 1 & cg-utg-mg & 0.1143475 & 0.100622 & 0.124755 & 0.1105215  \\ 
+        Ablation 2 & cg-mg-utg & 0.1143475 & 0.100622 & 0.0982835 & 0.1211765  \\ 
+        Ablation 3 & utg-cg-mg & 0.1143475 & 0.129741 & 0.114616 & 0.106551  \\ 
+        Ablation 4 & utg-mg-cg & 0.1143475 & 0.129741 & 0.1133925 & 0.108431  \\ 
+        Ablation 5 & mg-cg-utg & 0.1143475 & 0.091671 & 0.095757 & 0.1324305  \\ 
+        Ablation 6 & mg-utg-cg & 0.1143475 & 0.091671 & 0.133159 & 0.107954 \\ \hline
+    \end{tabular}
+    \label{tab:UnitTestGenTestBaseline}
+\end{table}
+
+\begin{table}[!ht]
+    \centering
+    \caption{Performance on the Validation set of Unit Test Generation in task across ablations for Baseline runs}
+    \begin{tabular}{|l|l|S[table-format=2.4]|S[table-format=2.4]|S[table-format=2.4]|S[table-format=2.4]|}
+    \hline
+        \textbf{Ablation} & \textbf{Task order} & \textbf{pre\_eval} & \textbf{post\_eval1} & \textbf{post\_eval2} & \textbf{post\_eval3 } \\ \hline
+        Ablation 1 & cg-utg-mg & 0.1526715 & 0.1356135 & 0.17702 & 0.15221  \\ 
+        Ablation 2 & cg-mg-utg & 0.1526715 & 0.1356135 & 0.129706 & 0.172063  \\ 
+        Ablation 3 & utg-cg-mg & 0.1526715 & 0.192541 & 0.1709965 & 0.156134  \\ 
+        Ablation 4 & utg-mg-cg & 0.1526715 & 0.192541 & 0.158679 & 0.163308  \\ 
+        Ablation 5 & mg-cg-utg & 0.1526715 & 0.1241635 & 0.133897 & 0.180247  \\ 
+        Ablation 6 & mg-utg-cg & 0.1526715 & 0.1241635 & 0.179795 & 0.1711145 \\ \hline
+    \end{tabular}
+    \label{tab:UnitTestGenValBaseline}
+\end{table}
+
+\begin{table}[!ht]
+    \centering
+    \caption{Performance on the Test set of Manifest Generation in task across ablations for Baseline runs}
+    \begin{tabular}{|l|l|S[table-format=2.4]|S[table-format=2.4]|S[table-format=2.4]|S[table-format=2.4]|}
+    \hline
+        \textbf{Ablation} & \textbf{Task order} & \textbf{pre\_eval} & \textbf{post\_eval1} & \textbf{post\_eval2} & \textbf{post\_eval3 } \\ \hline
+        Ablation 1 & cg-utg-mg & 0.034924 & 0.039671 & 0.0376915 & 0.051237  \\ 
+        Ablation 2 & cg-mg-utg & 0.034924 & 0.039671 & 0.054898 & 0.0519355  \\ 
+        Ablation 3 & utg-cg-mg & 0.034924 & 0.0070935 & 0.0238505 & 0.0548525  \\ 
+        Ablation 4 & utg-mg-cg & 0.034924 & 0.0070935 & 0.0528435 & 0.0580775  \\ 
+        Ablation 5 & mg-cg-utg & 0.034924 & 0.0536225 & 0.054903 & 0.057162  \\ 
+        Ablation 6 & mg-utg-cg & 0.034924 & 0.0536225 & 0.053846 & 0.051532 \\ \hline
+    \end{tabular}
+    \label{tab:ManifestGenTestBaseline}
+\end{table}
+
+\begin{table}[!ht]
+    \centering
+    \caption{Performance on the Validation set of Manifest Generation in task across ablations for Baseline runs}
+    \begin{tabular}{|l|l|S[table-format=2.4]|S[table-format=2.4]|S[table-format=2.4]|S[table-format=2.4]|}
+    \hline
+        \textbf{Ablation} & \textbf{Task order} & \textbf{pre\_eval} & \textbf{post\_eval1} & \textbf{post\_eval2} & \textbf{post\_eval3 } \\ \hline
+        Ablation 1 & cg-utg-mg & 0.0363895 & 0.036197 & 0.035644 & 0.0447165  \\ 
+        Ablation 2 & cg-mg-utg & 0.0363895 & 0.036197 & 0.043876 & 0.04471  \\ 
+        Ablation 3 & utg-cg-mg & 0.0363895 & 0.0075775 & 0.022038 & 0.0437745  \\ 
+        Ablation 4 & utg-mg-cg & 0.0363895 & 0.0075775 & 0.0437745 & 0.044901  \\ 
+        Ablation 5 & mg-cg-utg & 0.0363895 & 0.0447415 & 0.043907 & 0.043902  \\ 
+        Ablation 6 & mg-utg-cg & 0.0363895 & 0.0447415 & 0.0450425 & 0.0445295 \\ \hline
+    \end{tabular}
+    \label{tab:ManifestGenValBaseline}
+\end{table}

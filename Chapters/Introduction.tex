@@ -1,0 +1,120 @@
+% Chapter 1
+
+\chapter{Introduction} % Main chapter title
+
+\label{Introduction} % For referencing the chapter elsewhere, use \ref{Introduction} 
+
+%----------------------------------------------------------------------------------------
+
+
+
+Large Language Models (LLMs) have shown the capability to perform well with zero-shot %(discussed further in Section \ref{ZeroShot}) and few-shot learning %(discussed further in Section \ref{FewShot}) 
+on various problems \cite{brown2020language} \cite{rae2021scaling}. 
+To achieve this, these models are trained on a vast amount of data to encode world knowledge in their parameters. However, this knowledge can quickly become outdated as the world changes, requiring the models to be regularly updated with new knowledge. Continual Learning allows LLMs to learn from a continuous stream of incoming data while retaining previously learned knowledge. The challenge of renewing the knowledge stored in an LLM has previously been explored through techniques such as Retrieval Augmented Generation (RAG) and  Knowledge/Model Editing \cite{wang2023knowledge}. While both continual learning and these other techniques update the model's knowledge, they differ in their approach and focus. These techniques focus on expanding the model's factual knowledge base, whereas continual learning techniques are designed to allow LLMs to incrementally learn from new data and adapt to changing environments without forgetting previously learned knowledge. Continual learning is especially important for LLMs that need to work on different tasks or data, whose distributions might change over time. In this chapter, we introduce the research domain, as well as the objectives of our work. Moreover, we  our proposed approach to solve an open issue related to continual learning.
+
+
+\section{Background and Motivation}
+
+Wu et al.~\cite{wu2024continual} categorized continual learning into three different stages: 
+\begin{enumerate}
+    \item Continual Pretraining: to expand the model's fundamental understanding of language.
+    \item Continual Instruction Tuning: to improve the model's response to specific user commands.
+    \item Continual Alignment: to ensure the model's outputs adhere to values, ethical standards, and societal norms.
+\end{enumerate}
+
+While this categorization focuses on the stages in which continual learning can be performed for LLMs, Van de Ven et al. \cite{van2022three} categorized continual learning into three different scenarios  at a computational level: 
+\begin{enumerate}
+    \item Task-incremental learning: process to sequentially train a model to solve a number of distinct tasks.
+    \item Class-incremental learning: a process in which the model must incrementally learn to differentiate between a growing number of classes and objects.
+    \item Domain-incremental learning: a process in which the model must learn to solve the same problem in different contexts, wherein the context or the input distribution changes over time.
+\end{enumerate}
+
+Both of these categorizations are important to our study as we explore task-incremental learning in the context of instruction fine-tuning. To implement task-incremental continual learning on an LLM, the model needs to be fine-tuned on different tasks over time to improve its abilities on particular tasks. A significant challenge for this is catastrophic forgetting (CF), a phenomenon in which a model forgets previously learned knowledge due to parameter updates when learning a new task, leading to a degradation in the performance on earlier tasks. For instance: the instruction-following abilities of an instruction-tuned model might be affected by continual pre-training. 
+
+To address this issue, it is important to look into mitigation approaches and inference architectures that help combat the adverse effects of catastrophic forgetting. 
+
+%----------------------------------------------------------------------------------------
+
+\section{Problem Statement}
+Catastrophic forgetting is a significant problem in task-incremental learning and several approaches have been proposed to address it, including replay methods, regularization methods, and parameter isolation methods (discussed in detail in Section \ref{MitigationMethods}). However, there is a need to investigate the impact of task-incremental learning with and without the use of these mitigation methods on the innate capabilities of a pretrained model. This thesis aims to perform that investigation with the implementation of task-incremental learning for two different use cases: code generation and natural language generation.
+
+%----------------------------------------------------------------------------------------
+\section{Research Gaps and Contributions}
+While a lot of research has been done in the field of continual learning for LLMs, there are several gaps that remain:
+\begin{itemize}
+\item \textbf{Limited focus on model's innate capabilities.} Most research on catastrophic forgetting in continual learning focuses on how forgetting can influence task performance, and less attention is given to the impact of continual learning on the pre-trained capabilities of the model.
+\item \textbf{Lack of studies across different use cases.} There is a lack of existing research in understanding the effects of task-incremental learning across different use cases such as code generation and natural language generation.
+\item \textbf{Practical mitigation approaches.} There is a need for more research on practical mitigation methods that can be implemented in real-world settings to mitigate catastrophic forgetting.
+\end{itemize}
+
+This thesis work aims to address these gaps through the following contributions:
+\begin{itemize}
+\item We provide a study of how task-incremental learning affects the retention of the innate capabilities of pre-trained models and subsequently learned tasks.
+\item Our research looks at the effects of continual learning across two different use cases: code generation and natural language generation.
+\item We investigate the impact of the order in which we perform the tasks in task-incremental learning.
+\item Our research focuses on the use of parameter efficient fine-tuning methods, specifically Low Rank Adaptation (LoRA), discussed in detail in Section \ref{LoRA}. This allows us to evaluate its effectiveness in continual learning settings.
+\item We study the effects of mitigation approaches through our implementation of Cognitive Replay (CORE) \cite{zhang2024core} based mitigation method and provide insights into its effectiveness.
+\end{itemize}
+
+By addressing these research gaps, our work attempts to contribute to the development of robust models, capable of continual learning while maintaining their pre-trained and learned capabilities.
+%----------------------------------------------------------------------------------------
+
+\section{Research Questions and Scope} \label{ResearchQuestions}
+This thesis primarily aims to investigate the impact of task-incremental learning on the retention of the innate capabilities of pretrained models and subsequently merged tasks using parameter-efficient methods with and without the use of replay buffers as a mitigation method. In this work, we attempt to address the following questions:
+\begin{enumerate}[label={RQ\arabic*.}, leftmargin=*]
+
+\item How does task-incremental instruction fine-tuning using parameter efficient methods on different tasks influence the retention of the innate capabilities of a pretrained model:
+    \begin{enumerate}[label={RQ1\alph*.}, leftmargin=*]
+        \item for code pretrained models in code generation and manifest generation?
+        \item for general language pretrained models in terms of reasoning, comprehension, and math?
+    \end{enumerate}
+
+\item Do different tasks have varying levels of impact on the retention of the pretrained model’s capabilities:
+    \begin{enumerate}[label={RQ2\alph*.}, leftmargin=*]
+        \item for code models when we train on unseen code, unit-test of unseen code, and manifest generation?
+        \item for general language models when we further train on summarization, question answering, and math tasks?
+    \end{enumerate}
+
+\item Does the order in which we perform task-incremental instruction fine-tuning have varying levels of impact on the retention of the pretrained model’s capabilities: \label{RQ3}
+    \begin{enumerate}[label={RQ3\alph*.}, leftmargin=*]
+        \item for code models when we train on unseen code, unit-test of unseen code, and manifest generation? \label{RQ3a}
+        \item for general language models when we further train on summarization, question answering, and math tasks? \label{RQ3b}
+    \end{enumerate}
+
+\item Does the order in which we perform task-incremental instruction fine-tuning have varying levels of impact on the retention of previous tasks' that are novel to the base model: \label{RQ4}
+    \begin{enumerate}[label={RQ4\alph*.}, leftmargin=*]
+        \item for unseen code, unit-test of unseen code, and manifest generation? \label{RQ4a}
+        \item for summarization, question answering, and math tasks? \label{RQ4b}
+    \end{enumerate}
+
+\item Does replay (Cognitive Replay method) \cite{zhang2024core} with static buffer size and threshold) mitigate forgetting and retain performance when used in task-incremental instruction fine-tuning using parameter-efficient methods:
+    \begin{enumerate}[label={RQ5\alph*.}, leftmargin=*]
+        \item for the base pretrained model innate capabilities when the order of training the tasks is varied?
+        \item for the subsequent merged new tasks, when the order of training the tasks is varied?
+    \end{enumerate}
+
+\end{enumerate}
+
+The research strives to answer these questions through:
+\begin{enumerate}
+    \item The development of a fine-tuning pipeline using parameter-efficient methods for training a language model on distinct tasks over time.
+    \item The implementation of an evaluation mechanism to compare the capabilities of the pre-trained LLM on benchmarks before and after fine-tuning on a task.
+    \item The implementation of an evaluation mechanism to measure task-specific performance on previous tasks after being fine-tuned on newer tasks.
+    \item The implementation of a mitigation method based on replay buffer with Adaptive Quantity Allocation and Quality-Focused Data Selection to measure its impact on forgetting.
+\end{enumerate}
+
+\section{Limitations}
+The scope of this thesis is limited to task-incremental learning in the domain of code generation and generic language tasks. This study focuses on the use of parameter-efficient methods, specifically LoRA (Low Rank Adaptation) method, for fine-tuning and with the investigation into just the replay method as a form of mitigation. Additionally, this research uses private company datasets for the code generation use case. As the datasets used for the code generation study are the property of the company, only the results from the experiments with the datasets will be included and the datasets themselves will not be published as part of thesis work.
+
+%----------------------------------------------------------------------------------------
+
+\section{Thesis Structure and Overview}
+The remainder of this thesis is organized as follows:
+\begin{enumerate}
+    \item Chapter \ref{LiteratureReview} presents a literature review on the existing research on continual learning and the different methods proposed for the mitigation of catastrophic forgetting.
+    \item Chapter \ref{Methodology} describes the methodology used in the research, including the method for data preparation, preprocessing, fine-tuning, implementation of the mitigation approach, and the evaluation with different benchmarks.
+    \item Chapter \ref{Experiments} describes the different experiments carried out as part of this study, along with the different ablations performed.
+    \item Chapter \ref{Results} involves the analysis of the results obtained from the experiments.
+    \item Chapter \ref{Conclusion} summarizes the findings of the thesis work and suggests directions for future work.
+
+\end{enumerate}

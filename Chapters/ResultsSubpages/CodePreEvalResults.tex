@@ -1,0 +1,73 @@
+
+%----Table 1
+% \begin{table}[h!]
+% \centering
+% \caption{Performance of DeepSeek-Coder-6.7B-Instruct on different benchmarks}
+% \begin{tabular}{|l|l|l|l|}
+% \hline
+% Evaluation Benchmark & Dataset & Score & Metric \\
+% \hline
+% \multirow{3}{*}{HumanEval (+ MultiPL-E)} & C++ & 0.6375 & \multirow{3}{*}{pass@1} \\
+% & Java & 0.64375 & \\
+% & Python & 0.76875 & \\
+% \hline
+% CoNaLa & CoNaLa & 0.216249 & CodeBLEU \\
+% \hline
+% \end{tabular}
+% \label{tab:CodeBenchmarkPreEval}
+% \end{table}
+
+\begin{table}[H]
+\centering
+\caption{Performance of DeepSeek-Coder-6.7B-Instruct on different benchmarks}
+\begin{tabular}{lllllll}
+\hline
+\multicolumn{1}{|l|}{Evaluation   Benchmark}                    & \multicolumn{1}{l|}{Metric}                                                & \multicolumn{1}{l|}{Dataset} & \multicolumn{1}{l|}{Total Size} & \multicolumn{1}{l|}{N} & \multicolumn{1}{l|}{Score}  & \multicolumn{1}{l|}{Reported Score} \\ \hline
+\multicolumn{1}{|c|}{}                                          & \multicolumn{1}{l|}{{\color[HTML]{467886} }}                               & \multicolumn{1}{l|}{C++}     & \multicolumn{1}{l|}{161}        & \multicolumn{1}{l|}{80}              & \multicolumn{1}{l|}{0.6375} & \multicolumn{1}{l|}{0.634}          \\ \cline{3-7} 
+\multicolumn{1}{|c|}{}                                          & \multicolumn{1}{l|}{{\color[HTML]{467886} }}                               & \multicolumn{1}{l|}{Java}    & \multicolumn{1}{l|}{158}        & \multicolumn{1}{l|}{80}              & \multicolumn{1}{l|}{0.6438} & \multicolumn{1}{l|}{0.684}          \\ \cline{3-7} 
+\multicolumn{1}{|c|}{\multirow{-3}{*}{HumanEval (+ MultiPL-E)}} & \multicolumn{1}{l|}{\multirow{-3}{*}{{pass@1}}} & \multicolumn{1}{l|}{Python}  & \multicolumn{1}{l|}{164}        & \multicolumn{1}{l|}{80}              & \multicolumn{1}{l|}{0.7688} & \multicolumn{1}{l|}{0.786} \\ \hline
+\multicolumn{1}{|c|}{CoNaLa   (CodeBLEU)}                       & \multicolumn{1}{l|}{CodeBLEU}                                              & \multicolumn{1}{l|}{CoNaLa}  & \multicolumn{1}{l|}{500}        & \multicolumn{1}{l|}{100}             & \multicolumn{1}{l|}{0.2162} & \multicolumn{1}{l|}{}               \\ \hline
+\end{tabular}
+\label{tab:CodeBenchmarkPreEval}
+\end{table}
+
+
+% %-----Table 2
+% \begin{table}[h!]
+% \centering
+% \caption{Performance of DeepSeek-Coder-6.7B-Instruct on Test and Validation datasets for different tasks}
+% \begin{tabular}{|l|l|r|}
+% \hline
+% Task & Dataset & Score (CodeBLEU) \\
+% \hline
+% \multirow{2}{*}{cg} & Test & 0.046312 \\
+%  & Validation & 0.041909 \\
+% \hline
+% \multirow{2}{*}{utg} & Test & 0.114348 \\
+%  & Validation & 0.152672 \\
+% \hline
+% \multirow{2}{*}{mg} & Test & 0.034924 \\
+%  & Validation & 0.036390 \\
+% \hline
+% \end{tabular}
+% \label{tab:CodeTaskEvalPreEval}
+% \end{table}
+
+\begin{table}[H]
+\centering
+\caption{Performance of DeepSeek-Coder-6.7B-Instruct on Test and Validation datasets for different tasks}
+\begin{tabular}{clll}
+\cline{1-4}
+\multicolumn{1}{|l|}{Task}                 & \multicolumn{1}{l|}{Dataset}    & \multicolumn{1}{l|}{Sample size (N)} & \multicolumn{1}{l|}{Score (CodeBLEU)} \\ \cline{1-4}
+\multicolumn{1}{|c|}{\multirow{2}{*}{cg}}  & \multicolumn{1}{l|}{Test}       & \multicolumn{1}{l|}{500}             & \multicolumn{1}{l|}{0.0463}          \\ \cline{2-4}
+\multicolumn{1}{|c|}{}                     & \multicolumn{1}{l|}{Validation} & \multicolumn{1}{l|}{501}             & \multicolumn{1}{l|}{0.0419}           \\ \cline{1-4}
+\multicolumn{1}{|c|}{\multirow{2}{*}{utg}} & \multicolumn{1}{l|}{Test}       & \multicolumn{1}{l|}{48}              & \multicolumn{1}{l|}{0.1143}           \\ \cline{2-4}
+\multicolumn{1}{|c|}{}                     & \multicolumn{1}{l|}{Validation} & \multicolumn{1}{l|}{48}              & \multicolumn{1}{l|}{0.1527}           \\ \cline{1-4}
+\multicolumn{1}{|c|}{\multirow{2}{*}{mg}}  & \multicolumn{1}{l|}{Test}       & \multicolumn{1}{l|}{145}             & \multicolumn{1}{l|}{0.0349}           \\ \cline{2-4}
+\multicolumn{1}{|c|}{}                     & \multicolumn{1}{l|}{Validation} & \multicolumn{1}{l|}{146}             & \multicolumn{1}{l|}{0.0364}           \\ \cline{1-4}
+\multicolumn{1}{l}{}                       &                                 &                                      &                                       \\
+\multicolumn{1}{l}{}                       &                                 &                                      &                                       \\
+\multicolumn{1}{l}{}                       &                                 &                                      &                                      
+\end{tabular}
+\label{tab:CodeTaskEvalPreEval}
+\end{table}

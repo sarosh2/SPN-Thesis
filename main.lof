@@ -1,0 +1,64 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\babel@toc {english}{}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Sequential Fine-tuning of LoRA adapters.\relax }}{8}{figure.caption.46}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Synthetic Data Generation process.\relax }}{13}{figure.caption.80}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Sequential training and merging of LoRA Adapters\relax }}{14}{figure.caption.94}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Baseline Process Pipeline.\relax }}{15}{figure.caption.96}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Merging LoRA adapter to base model\relax }}{17}{figure.caption.120}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces LoRA Fine-tuning with Replay\relax }}{23}{figure.caption.177}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Llama Architecture.\relax }}{27}{figure.caption.202}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Baseline vs. Mitigation for HumanEval (+ MultiPL-E) C++\relax }}{35}{figure.caption.227}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Baseline vs. Mitigation for HumanEval (+ MultiPL-E) Java\relax }}{35}{figure.caption.228}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Baseline vs. Mitigation for HumanEval (+ MultiPL-E) Python\relax }}{36}{figure.caption.229}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Baseline vs. Mitigation for CoNaLa benchmark\relax }}{36}{figure.caption.230}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Baseline vs. Mitigation for Code Generation in C++\relax }}{37}{figure.caption.232}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Baseline vs. Mitigation for Unit Test Generation\relax }}{37}{figure.caption.233}%
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Baseline vs. Mitigation for Manifest Generation\relax }}{38}{figure.caption.234}%
+\contentsline {figure}{\numberline {4.8}{\ignorespaces HumanEval (+ MultiPL-E) C++: Baseline runs\relax }}{39}{figure.caption.238}%
+\contentsline {figure}{\numberline {4.9}{\ignorespaces HumanEval (+ MultiPL-E) C++: Mitigation runs\relax }}{39}{figure.caption.238}%
+\contentsline {figure}{\numberline {4.10}{\ignorespaces HumanEval (+ MultiPL-E) Java: Baseline runs\relax }}{40}{figure.caption.239}%
+\contentsline {figure}{\numberline {4.11}{\ignorespaces HumanEval (+ MultiPL-E) Java: Mitigation runs\relax }}{40}{figure.caption.239}%
+\contentsline {figure}{\numberline {4.12}{\ignorespaces HumanEval (+ MultiPL-E) Python: Baseline runs\relax }}{41}{figure.caption.240}%
+\contentsline {figure}{\numberline {4.13}{\ignorespaces HumanEval (+ MultiPL-E) Python: Mitigation runs\relax }}{41}{figure.caption.240}%
+\contentsline {figure}{\numberline {4.14}{\ignorespaces CoNaLa benchmark: Baseline runs\relax }}{41}{figure.caption.241}%
+\contentsline {figure}{\numberline {4.15}{\ignorespaces CoNaLa benchmark: Mitigation runs\relax }}{41}{figure.caption.241}%
+\contentsline {figure}{\numberline {4.16}{\ignorespaces Code Generation in C++ Test set: Baseline runs\relax }}{42}{figure.caption.242}%
+\contentsline {figure}{\numberline {4.17}{\ignorespaces Code Generation in C++ Test set: Mitigation runs\relax }}{42}{figure.caption.242}%
+\contentsline {figure}{\numberline {4.18}{\ignorespaces Code Generation in C++ Validation set: Baseline runs\relax }}{42}{figure.caption.243}%
+\contentsline {figure}{\numberline {4.19}{\ignorespaces Code Generation in C++ Validation set: Mitigation runs\relax }}{42}{figure.caption.243}%
+\contentsline {figure}{\numberline {4.20}{\ignorespaces Unit Test Generation Test set: Baseline runs\relax }}{43}{figure.caption.244}%
+\contentsline {figure}{\numberline {4.21}{\ignorespaces Unit Test Generation Test set: Mitigation runs\relax }}{43}{figure.caption.244}%
+\contentsline {figure}{\numberline {4.22}{\ignorespaces Unit Test Generation Validation set: Baseline runs\relax }}{43}{figure.caption.245}%
+\contentsline {figure}{\numberline {4.23}{\ignorespaces Unit Test Generation Validation set: Mitigation runs\relax }}{43}{figure.caption.245}%
+\contentsline {figure}{\numberline {4.24}{\ignorespaces Manifest Generation Test set: Baseline runs\relax }}{44}{figure.caption.246}%
+\contentsline {figure}{\numberline {4.25}{\ignorespaces Manifest Generation Test set: Mitigation runs\relax }}{44}{figure.caption.246}%
+\contentsline {figure}{\numberline {4.26}{\ignorespaces Manifest Generation Validation set: Baseline runs\relax }}{44}{figure.caption.247}%
+\contentsline {figure}{\numberline {4.27}{\ignorespaces Manifest Generation Validation set: Mitigation runs\relax }}{44}{figure.caption.247}%
+\contentsline {figure}{\numberline {4.28}{\ignorespaces Baseline vs. Mitigation for ARC-Challenge Benchmark\relax }}{47}{figure.caption.258}%
+\contentsline {figure}{\numberline {4.29}{\ignorespaces Baseline vs. Mitigation for GSM8K Benchmark\relax }}{47}{figure.caption.259}%
+\contentsline {figure}{\numberline {4.30}{\ignorespaces Baseline vs. Mitigation: Question Answering (qa)\relax }}{48}{figure.caption.261}%
+\contentsline {figure}{\numberline {4.31}{\ignorespaces Baseline vs. Mitigation: Summarization (summ)\relax }}{48}{figure.caption.262}%
+\contentsline {figure}{\numberline {4.32}{\ignorespaces Baseline vs. Mitigation: Mathematical Reasoning (math)\relax }}{49}{figure.caption.263}%
+\contentsline {figure}{\numberline {4.33}{\ignorespaces ARC-Challenge: Baseline runs\relax }}{50}{figure.caption.267}%
+\contentsline {figure}{\numberline {4.34}{\ignorespaces ARC-Challenge: Mitigation runs\relax }}{50}{figure.caption.267}%
+\contentsline {figure}{\numberline {4.35}{\ignorespaces GSM8K benchmark: Baseline runs\relax }}{51}{figure.caption.268}%
+\contentsline {figure}{\numberline {4.36}{\ignorespaces GSM8K benchmark: Mitigation runs\relax }}{51}{figure.caption.268}%
+\contentsline {figure}{\numberline {4.37}{\ignorespaces Question Answering Test set: Baseline runs\relax }}{51}{figure.caption.269}%
+\contentsline {figure}{\numberline {4.38}{\ignorespaces Question Answering Test set: Mitigation runs\relax }}{51}{figure.caption.269}%
+\contentsline {figure}{\numberline {4.39}{\ignorespaces Question Answering Validation set: Baseline runs\relax }}{52}{figure.caption.270}%
+\contentsline {figure}{\numberline {4.40}{\ignorespaces Question Answering Validation set: Mitigation runs\relax }}{52}{figure.caption.270}%
+\contentsline {figure}{\numberline {4.41}{\ignorespaces Summarization Test set: Baseline runs\relax }}{52}{figure.caption.271}%
+\contentsline {figure}{\numberline {4.42}{\ignorespaces Summarization Test set: Mitigation runs\relax }}{52}{figure.caption.271}%
+\contentsline {figure}{\numberline {4.43}{\ignorespaces Summarization Validation set: Baseline runs\relax }}{53}{figure.caption.272}%
+\contentsline {figure}{\numberline {4.44}{\ignorespaces Summarization Validation set: Mitigation runs\relax }}{53}{figure.caption.272}%
+\contentsline {figure}{\numberline {4.45}{\ignorespaces Mathematical Reasoning Test set: Baseline runs\relax }}{53}{figure.caption.273}%
+\contentsline {figure}{\numberline {4.46}{\ignorespaces Mathematical Reasoning Test set: Mitigation runs\relax }}{53}{figure.caption.273}%
+\contentsline {figure}{\numberline {4.47}{\ignorespaces Mathematical Reasoning Validation set: Baseline runs\relax }}{54}{figure.caption.274}%
+\contentsline {figure}{\numberline {4.48}{\ignorespaces Mathematical Reasoning Validation set: Mitigation runs\relax }}{54}{figure.caption.274}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }

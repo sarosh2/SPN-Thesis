@@ -2,113 +2,100 @@
 
 \chapter{Introduction} % Main chapter title
 
-\label{Introduction} % For referencing the chapter elsewhere, use \ref{Introduction} 
+\label{Introduction} % For referencing the chapter elsewhere, use \ref{Chapter1} 
 
 %----------------------------------------------------------------------------------------
 
+% Define some commands to keep the formatting separated from the content 
+\newcommand{\keyword}[1]{\textbf{#1}}
+\newcommand{\tabhead}[1]{\textbf{#1}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\file}[1]{\texttt{\bfseries#1}}
+\newcommand{\option}[1]{\texttt{\itshape#1}}
 
+%----------------------------------------------------------------------------------------
 
-Large Language Models (LLMs) have shown the capability to perform well with zero-shot %(discussed further in Section \ref{ZeroShot}) and few-shot learning %(discussed further in Section \ref{FewShot}) 
-on various problems \cite{brown2020language} \cite{rae2021scaling}. 
-To achieve this, these models are trained on a vast amount of data to encode world knowledge in their parameters. However, this knowledge can quickly become outdated as the world changes, requiring the models to be regularly updated with new knowledge. Continual Learning allows LLMs to learn from a continuous stream of incoming data while retaining previously learned knowledge. The challenge of renewing the knowledge stored in an LLM has previously been explored through techniques such as Retrieval Augmented Generation (RAG) and  Knowledge/Model Editing \cite{wang2023knowledge}. While both continual learning and these other techniques update the model's knowledge, they differ in their approach and focus. These techniques focus on expanding the model's factual knowledge base, whereas continual learning techniques are designed to allow LLMs to incrementally learn from new data and adapt to changing environments without forgetting previously learned knowledge. Continual learning is especially important for LLMs that need to work on different tasks or data, whose distributions might change over time. In this chapter, we introduce the research domain, as well as the objectives of our work. Moreover, we  our proposed approach to solve an open issue related to continual learning.
+The Perceptron, introduced by Frank Rosenblatt in 1958, is one of the earliest and most influential models in machine learning (ML). Designed to solve binary classification problems, the perceptron is a simple linear classifier inspired by the biological neurons in the human brain. It works by assigning weights to a set of input features and calculating a weighted sum of these features, which is passed through an activation function to determine the classification. The model iteratively adjusts these weights based on prediction errors, learning from the data until it reaches an optimal configuration.
+
+However, while the perceptron performs well for linearly separable data, it struggles with more complex, non-linear problems. This limitation prompted the development of the Multi-Layer Perceptron (MLP) in the 1980s. MLPs extend the perceptron by adding multiple layers of perceptrons, enabling the model to learn non-linear relationships within the data. The breakthrough of backpropagation, introduced by Paul Werbos in the 1970s and popularized by Geoffrey Hinton and others in the 1980s, made it possible to train MLPs by calculating gradients and adjusting the weights across multiple layers.
+
+The evolution of neural networks has given rise to specialized architectures such as Convolutional Neural Networks (CNNs) for image tasks and Transformer-based Large Language Models (LLMs) for natural language processing. Despite this, the MLP remains a foundational architecture that laid the groundwork for more advanced models. MLPs consist of multiple layers where each neuron in one layer is fully connected to every neuron in the subsequent layer, enabling the model to learn complex patterns in data, such as those found in image and speech recognition.
+
+Recent research in neural network architecture design has evolved into a field known as Neural Architecture Search (NAS), which aims to find optimal architectures for a specific task by exploring various combinations of hyperparameters, layers, and connections. NAS employs search strategies, such as reinforcement learning, evolutionary algorithms, and gradient-based methods, to efficiently navigate the vast space of possible architectures. Despite the progress made, traditional MLPs are constrained by hierarchical connections between layers, which limit their ability to explore more flexible connectivity patterns, such as those involving skip connections within or between layers. While advancements like Residual Networks (ResNet) have introduced skip connections to alleviate this issue, the full potential of neuron connectivity remains untapped.
+
+This thesis proposes a novel approach, Sarosh's Perceptron Networks (SPNs), to address these limitations by enabling unrestricted connectivity between neurons. Unlike traditional MLPs, SPNs eliminate the constraints on layer-to-layer connections, allowing neurons to interact more freely across the network. By fostering greater flexibility in connectivity, SPNs are hypothesized to enhance model performance without introducing the computational overhead typically associated with large, fully connected networks. This work aims to improve the expressiveness and efficiency of neural network architectures, offering new avenues for both theoretical exploration and practical applications in machine learning.
 
 
 \section{Background and Motivation}
+The Perceptron marked the first significant step in the evolution of artificial neural networks (ANNs). Rosenblatt’s model was inspired by the brain's structure, where neurons are connected by synapses and can adjust their strengths (synaptic weights) based on learning experiences. The Perceptron algorithm iterates over a set of input data, adjusts weights, and improves its ability to classify data. However, the perceptron could only solve problems that were linearly separable, leading to the need for more sophisticated architectures.
 
-Wu et al.~\cite{wu2024continual} categorized continual learning into three different stages: 
-\begin{enumerate}
-    \item Continual Pretraining: to expand the model's fundamental understanding of language.
-    \item Continual Instruction Tuning: to improve the model's response to specific user commands.
-    \item Continual Alignment: to ensure the model's outputs adhere to values, ethical standards, and societal norms.
-\end{enumerate}
+In the early 1980s, the Multi-Layer Perceptron (MLP) emerged, and the backpropagation algorithm was introduced to train these networks. Backpropagation allowed the MLPs to learn complex, non-linear functions by adjusting the weights across multiple layers using gradient descent. This innovation enabled the training of deep networks and formed the basis for modern deep learning techniques.
 
-While this categorization focuses on the stages in which continual learning can be performed for LLMs, Van de Ven et al. \cite{van2022three} categorized continual learning into three different scenarios  at a computational level: 
-\begin{enumerate}
-    \item Task-incremental learning: process to sequentially train a model to solve a number of distinct tasks.
-    \item Class-incremental learning: a process in which the model must incrementally learn to differentiate between a growing number of classes and objects.
-    \item Domain-incremental learning: a process in which the model must learn to solve the same problem in different contexts, wherein the context or the input distribution changes over time.
-\end{enumerate}
+While MLPs were revolutionary, challenges remained regarding the optimal configuration of these networks. The number of layers and neurons in each layer, as well as how to connect these neurons, remained an open question. While the basic idea was that deeper networks (with more layers) could learn more complex patterns, no clear guidelines existed for how deep or wide the networks should be. Researchers began exploring empirical approaches to determine the ideal architecture.
 
-Both of these categorizations are important to our study as we explore task-incremental learning in the context of instruction fine-tuning. To implement task-incremental continual learning on an LLM, the model needs to be fine-tuned on different tasks over time to improve its abilities on particular tasks. A significant challenge for this is catastrophic forgetting (CF), a phenomenon in which a model forgets previously learned knowledge due to parameter updates when learning a new task, leading to a degradation in the performance on earlier tasks. For instance: the instruction-following abilities of an instruction-tuned model might be affected by continual pre-training. 
+One of the key insights came from "Efficient Backprop" (1998) by Yann LeCun, Léon Bottou, Geneviève Orr, and Klaus-Robert Müller, which highlighted methods for optimizing backpropagation. They proposed better weight initialization, momentum, and adaptive learning rates to accelerate convergence and prevent models from getting stuck in local minima. These methods made it possible to train deeper networks more effectively.
 
-To address this issue, it is important to look into mitigation approaches and inference architectures that help combat the adverse effects of catastrophic forgetting. 
+Further breakthroughs in architecture design came with Deep Residual Networks (ResNets), introduced in 2015 by Kaiming He and colleagues. ResNets utilized skip connections (residual blocks) that allowed information to bypass intermediate layers. This innovation solved the vanishing gradient problem, enabling the training of networks with hundreds or thousands of layers.
 
+However, despite these advancements, the architectural design of neural networks remains an empirical challenge. Neural Architecture Search (NAS) emerged as an automated way to discover optimal architectures, but it is still computationally expensive and often depends on pre-existing knowledge.
 %----------------------------------------------------------------------------------------
 
 \section{Problem Statement}
-Catastrophic forgetting is a significant problem in task-incremental learning and several approaches have been proposed to address it, including replay methods, regularization methods, and parameter isolation methods (discussed in detail in Section \ref{MitigationMethods}). However, there is a need to investigate the impact of task-incremental learning with and without the use of these mitigation methods on the innate capabilities of a pretrained model. This thesis aims to perform that investigation with the implementation of task-incremental learning for two different use cases: code generation and natural language generation.
 
-%----------------------------------------------------------------------------------------
-\section{Research Gaps and Contributions}
-While a lot of research has been done in the field of continual learning for LLMs, there are several gaps that remain:
-\begin{itemize}
-\item \textbf{Limited focus on model's innate capabilities.} Most research on catastrophic forgetting in continual learning focuses on how forgetting can influence task performance, and less attention is given to the impact of continual learning on the pre-trained capabilities of the model.
-\item \textbf{Lack of studies across different use cases.} There is a lack of existing research in understanding the effects of task-incremental learning across different use cases such as code generation and natural language generation.
-\item \textbf{Practical mitigation approaches.} There is a need for more research on practical mitigation methods that can be implemented in real-world settings to mitigate catastrophic forgetting.
-\end{itemize}
+Although MLPs and other deep learning models have made significant strides in various tasks, the design of their architecture remains a critical issue. Traditional MLPs suffer from a limited connectivity between neurons. Neurons within a single layer do not interact with one another, and neurons in different layers are connected only via intermediate neurons. This design limits the network's ability to learn complex, interdependent features in the data.
 
-This thesis work aims to address these gaps through the following contributions:
-\begin{itemize}
-\item We provide a study of how task-incremental learning affects the retention of the innate capabilities of pre-trained models and subsequently learned tasks.
-\item Our research looks at the effects of continual learning across two different use cases: code generation and natural language generation.
-\item We investigate the impact of the order in which we perform the tasks in task-incremental learning.
-\item Our research focuses on the use of parameter efficient fine-tuning methods, specifically Low Rank Adaptation (LoRA), discussed in detail in Section \ref{LoRA}. This allows us to evaluate its effectiveness in continual learning settings.
-\item We study the effects of mitigation approaches through our implementation of Cognitive Replay (CORE) \cite{zhang2024core} based mitigation method and provide insights into its effectiveness.
-\end{itemize}
-
-By addressing these research gaps, our work attempts to contribute to the development of robust models, capable of continual learning while maintaining their pre-trained and learned capabilities.
+Despite advancements such as skip connections and residual networks, these solutions do not fully address the limitations of traditional MLP architectures. There is still a gap in the literature regarding the optimal arrangement of weights and neuron connectivity, which could potentially improve model performance, reduce training time, and allow for smaller, more efficient networks.
 %----------------------------------------------------------------------------------------
 
-\section{Research Questions and Scope} \label{ResearchQuestions}
-This thesis primarily aims to investigate the impact of task-incremental learning on the retention of the innate capabilities of pretrained models and subsequently merged tasks using parameter-efficient methods with and without the use of replay buffers as a mitigation method. In this work, we attempt to address the following questions:
-\begin{enumerate}[label={RQ\arabic*.}, leftmargin=*]
+\section{Research Gap and Contributions}
 
-\item How does task-incremental instruction fine-tuning using parameter efficient methods on different tasks influence the retention of the innate capabilities of a pretrained model:
-    \begin{enumerate}[label={RQ1\alph*.}, leftmargin=*]
-        \item for code pretrained models in code generation and manifest generation?
-        \item for general language pretrained models in terms of reasoning, comprehension, and math?
-    \end{enumerate}
+There is a significant gap in the literature concerning the optimization of neural network architectures, particularly in terms of neuron connectivity. Traditional MLPs rely on fixed architectural structures that restrict how neurons in different layers interact. Although skip connections have improved deep networks by mitigating the vanishing gradient problem, they still impose certain constraints, such as requiring neurons to have the same dimensionality or limiting connections to adjacent layers.
 
-\item Do different tasks have varying levels of impact on the retention of the pretrained model’s capabilities:
-    \begin{enumerate}[label={RQ2\alph*.}, leftmargin=*]
-        \item for code models when we train on unseen code, unit-test of unseen code, and manifest generation?
-        \item for general language models when we further train on summarization, question answering, and math tasks?
-    \end{enumerate}
+This thesis introduces Denser Perceptron Networks (DPNs), a new framework that eliminates the restriction of fixed connectivity patterns between neurons. DPNs allow for fully connected networks, where any two neurons can be linked. This increased connectivity has the potential to improve the model’s ability to learn complex, interdependent features, potentially leading to improved generalization and performance.
 
-\item Does the order in which we perform task-incremental instruction fine-tuning have varying levels of impact on the retention of the pretrained model’s capabilities: \label{RQ3}
-    \begin{enumerate}[label={RQ3\alph*.}, leftmargin=*]
-        \item for code models when we train on unseen code, unit-test of unseen code, and manifest generation? \label{RQ3a}
-        \item for general language models when we further train on summarization, question answering, and math tasks? \label{RQ3b}
-    \end{enumerate}
+The main contributions of this thesis are:
 
-\item Does the order in which we perform task-incremental instruction fine-tuning have varying levels of impact on the retention of previous tasks' that are novel to the base model: \label{RQ4}
-    \begin{enumerate}[label={RQ4\alph*.}, leftmargin=*]
-        \item for unseen code, unit-test of unseen code, and manifest generation? \label{RQ4a}
-        \item for summarization, question answering, and math tasks? \label{RQ4b}
-    \end{enumerate}
+The introduction of DPNs: A new neural network architecture that eliminates the restrictions of traditional MLP designs.
 
-\item Does replay (Cognitive Replay method) \cite{zhang2024core} with static buffer size and threshold) mitigate forgetting and retain performance when used in task-incremental instruction fine-tuning using parameter-efficient methods:
-    \begin{enumerate}[label={RQ5\alph*.}, leftmargin=*]
-        \item for the base pretrained model innate capabilities when the order of training the tasks is varied?
-        \item for the subsequent merged new tasks, when the order of training the tasks is varied?
-    \end{enumerate}
+Empirical evaluation: A comparison of DPNs with traditional MLPs to determine whether the increased connectivity results in better performance, faster training, and more efficient models.
 
-\end{enumerate}
-
-The research strives to answer these questions through:
-\begin{enumerate}
-    \item The development of a fine-tuning pipeline using parameter-efficient methods for training a language model on distinct tasks over time.
-    \item The implementation of an evaluation mechanism to compare the capabilities of the pre-trained LLM on benchmarks before and after fine-tuning on a task.
-    \item The implementation of an evaluation mechanism to measure task-specific performance on previous tasks after being fine-tuned on newer tasks.
-    \item The implementation of a mitigation method based on replay buffer with Adaptive Quantity Allocation and Quality-Focused Data Selection to measure its impact on forgetting.
-\end{enumerate}
-
-\section{Limitations}
-The scope of this thesis is limited to task-incremental learning in the domain of code generation and generic language tasks. This study focuses on the use of parameter-efficient methods, specifically LoRA (Low Rank Adaptation) method, for fine-tuning and with the investigation into just the replay method as a form of mitigation. Additionally, this research uses private company datasets for the code generation use case. As the datasets used for the code generation study are the property of the company, only the results from the experiments with the datasets will be included and the datasets themselves will not be published as part of thesis work.
+Improved training efficiency: Investigation into whether DPNs can achieve high performance while reducing the time and memory costs typically associated with larger, deeper networks.
 
 %----------------------------------------------------------------------------------------
+
+\section{Research Questions}
+
+This thesis seeks to answer the following research questions:
+
+Can Denser Perceptron Networks (DPNs) achieve improved model performance compared to traditional MLPs?
+
+Does the removal of connectivity restrictions in neural networks improve the learning capabilities of the model?
+
+Can DPNs maintain performance with smaller network sizes, thus improving computational efficiency?
+
+How do DPNs compare to traditional architectures in terms of training time, memory consumption, and model accuracy?
+
+How does the flexibility of DPNs affect their ability to generalize across different types of datasets and tasks?
+
+%----------------------------------------------------------------------------------------
+
+\section{Scope and Limitations}
+
+This research focuses on Denser Perceptron Networks (DPNs) and evaluates their potential to enhance neural network performance through improved connectivity. The scope of the thesis is limited to the empirical comparison of DPNs with traditional MLPs on classification tasks.
+
+Key limitations include:
+
+Computational Constraints: DPNs, by design, involve a large number of connections, which may result in higher computational demands for training and inference. This research will focus on evaluating whether the performance gains from DPNs justify the computational cost.
+
+Task-specific Design: The results of this study may vary depending on the dataset and task. While the thesis focuses on classification tasks, the generalizability of DPNs to other types of tasks may require further investigation.
+
+Data Constraints: The experiments will be conducted using a set of standard datasets, and the findings may not fully apply to more complex or diverse real-world data.
+
+%----------------------------------------------------------------------------------------
+
 
 \section{Thesis Structure and Overview}
+
 The remainder of this thesis is organized as follows:
 \begin{enumerate}
     \item Chapter \ref{LiteratureReview} presents a literature review on the existing research on continual learning and the different methods proposed for the mitigation of catastrophic forgetting.

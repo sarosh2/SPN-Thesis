@@ -99,11 +99,12 @@ headsepline, % Uncomment to get a line under the header
 %	THESIS INFORMATION
 %----------------------------------------------------------------------------------------
 
-\thesistitle{Mitigating Catastrophic Forgetting in Task-Incremental Learning for Large Language Models} % Your thesis title, this is used in the title and abstract, print it elsewhere with \ttitle
+\thesistitle{SPN: A novel neural network architecture to improve the performance of MLPs} % Your thesis title, this is used in the title and abstract, print it elsewhere with \ttitle
 \supervisor{Dr. Phuong \textsc{T. Nguyen}} % Your supervisor's name, this is used in the title page, print it elsewhere with \supname
 \examiner{} % Your examiner's name, this is not currently used anywhere in the template, print it elsewhere with \examname
 \degree{Master of Science} % Your degree name, this is used in the title page and abstract, print it elsewhere with \degreename
-\author{Mudita \textsc{Shakya}} % Your name, this is used in the title page and abstract, print it elsewhere with \authorname
+\author{Sarosh \textsc{Krishan}} % Your name, this is used in the title page and abstract, print it elsewhere with \authorname
+\addresses{} % Your address, this is not currently used anywhere in the template, print it elsewhere with \addressname
 
 \subject{Computer Science} % Your subject area, this is not currently used anywhere in the template, print it elsewhere with \subjectname
 \keywords{} % Keywords for your thesis, this is not currently used anywhere in the template, print it elsewhere with \keywordnames
@@ -119,6 +120,7 @@ headsepline, % Uncomment to get a line under the header
 }
 
 \begin{document}
+
 \frontmatter % Use roman page numbering style (i, ii, iii, iv...) for the pre-content pages
 
 \pagestyle{plain} % Default to the plain heading style until the thesis style is called for the body content
@@ -147,8 +149,6 @@ headsepline, % Uncomment to get a line under the header
 \begin{flushright} \large
 \emph{Supervisor:} \\
 \href{https://www.disim.univaq.it/ThanhPhuong}{\supname} % Supervisor name - remove the \href bracket to remove the link  
-\emph{Company Supervisor:} \\
-\href{mailto:laith.zumot@nokia.com}{Laith \textsc{Zumot}} % Company Supervisor name - remove the \href bracket to remove the link  
 \end{flushright}
 \end{minipage}\\[3cm]
 \vfill
@@ -159,86 +159,32 @@ headsepline, % Uncomment to get a line under the header
 %\groupname\\
 \deptname\\[0.5cm] % Research group name and department name
 \vfill
-{\large Academic Year 2023/2024}\\[2cm] % Date
+{\large Academic Year 2024/2025}\\[2cm] % Date
 %\includegraphics{Logo} % University/department logo - uncomment to place it
 \vfill
 \end{center}
 \end{titlepage}
 
-% %----------------------------------------------------------------------------------------
-% %	DECLARATION PAGE
-% %----------------------------------------------------------------------------------------
-
-
-
-
-
-%\includegraphics[width=0.8\linewidth]{Figures/EDISS_Horizontal.png}
-%\textit{}\\[0.4cm]
-%This thesis was conducted within the Erasmus Mundus Joint Master Degree Programme on the Engineering of Data-intensive Intelligent Software Systems (EDISS).
-
-
-
-
-
-
-%---------------------------------------------------------------------------------------
-    \begin{center}
-        % Erasmus Mundus Joint Master Degree Programme
-        \vspace*{0.2\textheight}
-        
-        {\textbf{This thesis was conducted within the Erasmus Mundus Joint Master Degree Programme on the Engineering of Data-intensive Intelligent Software Systems (EDISS).}}
-
-        % Add some vertical space before the image
-        \vspace{2cm}
-
-        % Include the larger logo image
-        \includegraphics[width=0.4\linewidth]{Figures/logos/EDISS_Transparent.png}
-
-        % Add some vertical space after the image
-        \vspace{2cm}
-    \end{center}
-        
+%----------------------------------------------------------------------------------------
 %	DECLARATION PAGE
 %----------------------------------------------------------------------------------------
 
+\begin{center}
+	% Erasmus Mundus Joint Master Degree Programme
+	\vspace*{0.2\textheight}
+	
+	{\textbf{This thesis was conducted within the Erasmus Mundus Joint Master Degree Programme on the Engineering of Data-intensive Intelligent Software Systems (EDISS).}}
 
+	% Add some vertical space before the image
+	\vspace{2cm}
 
+	% Include the larger logo image
+	\includegraphics[width=0.4\linewidth]{Figures/logos/EDISS_Transparent.png}
 
+	% Add some vertical space after the image
+	\vspace{2cm}
+\end{center}
 
-
-% \begin{declaration}
-% \addchaptertocentry{\authorshipname} % Add the declaration to the table of contents
-% \noindent I, \authorname, declare that this thesis titled, \enquote{\ttitle} and the work presented in it are my own. I confirm that:
-
-% \begin{itemize} 
-% \item This work was done wholly or mainly while in candidature for a research degree at this University.
-% \item Where any part of this thesis has previously been submitted for a degree or any other qualification at this University or any other institution, this has been clearly stated.
-% \item Where I have consulted the published work of others, this is always clearly attributed.
-% \item Where I have quoted from the work of others, the source is always given. With the exception of such quotations, this thesis is entirely my own work.
-% \item I have acknowledged all main sources of help.
-% \item Where the thesis is based on work done by myself jointly with others, I have made clear exactly what was done by others and what I have contributed myself.\\
-% \end{itemize}
- 
-% \noindent Signed:\\
-% \rule[0.5em]{25em}{0.5pt} % This prints a line for the signature
- 
-% \noindent Date:\\
-% \rule[0.5em]{25em}{0.5pt} % This prints a line to write the date
-% \end{declaration}
-
-% \cleardoublepage
-
-
-
-% %----------------------------------------------------------------------------------------
-% %	ABSTRACT PAGE
-% %----------------------------------------------------------------------------------------
-
-% \begin{abstract}
-% \addchaptertocentry{\abstractname} % Add the abstract to the table of contents
-% The Thesis Abstract is written here (and usually kept to just this page). The page is kept centered vertically so can expand into the blank space above the title too\ldots
-% \end{abstract}
 
 %----------------------------------------------------------------------------------------
 %	ACKNOWLEDGEMENTS
@@ -246,17 +192,11 @@ headsepline, % Uncomment to get a line under the header
 
 \begin{acknowledgements}
 \addchaptertocentry{\acknowledgementname} % Add the acknowledgements to the table of contents
-I would like to express my sincerest gratitude to my mentor, Laith Zumot, for his invaluable guidance, support, and constant encouragement during the process. His expertise and insightful teachings have been instrumental in shaping this thesis work. 
-
 I would like to express my deep gratitude to my supervisor, Professor Phuong T. Nguyen, for his thoughtful advice, and support. His guidance has been indispensable throughout this process.
-
-I am grateful to both my mentor and my supervisor for being generous with sharing their knowledge and their time and patience.
-
-I would like to extend my gratitude to Nokia for providing me with the opportunity to do my thesis with them. I am grateful to my colleagues at ATG for creating a supportive and welcoming work environment.
 
 I would like to extend my thanks to EDISS programme coordinator Professor Sebastien Lafond and Professor Henry Muccini for providing me with this opportunity. Special thanks to Letizia Giorgetta for helping me navigate the intricacies of the administrative processes and always being ready to help.
 
-I am incredibly blessed to have a wonderful support system of family and friends. I am extremely grateful to my parents, my sister Khema, and my brother Shiwali for their love, unwavering support, and encouragement. 
+I am incredibly blessed to have a wonderful support system of family and friends. I am extremely grateful to my parents Usha Bai and Krishan Lal, and my sisters Neev Kiran and Kiranti Krishan, for their love, unwavering support, and encouragement. 
 
 
 \end{acknowledgements}
@@ -277,43 +217,10 @@ I am incredibly blessed to have a wonderful support system of family and friends
 
 \begin{abbreviations}{ll} % Include a list of abbreviations (a table of two columns)
 
-\textbf{LoRA} & \textbf{Lo}w \textbf{R}ank \textbf{A}daptation\\
-\textbf{LLM} & \textbf{L}arge \textbf{L}anguage \textbf{M}odel \\
-\textbf{PEFT} & \textbf{P}arameter \textbf{E}fficient \textbf{F}ine\textbf{T}uning\\
-\textbf{PET} & \textbf{P}arameter \textbf{E}fficient \textbf{T}uning \\
-\textbf{CF} & \textbf{C}atastrophic \textbf{F}orgetting\\
-\textbf{CORE} & \textbf{CO}gnitive \textbf{RE}play\\
-\textbf{TR} & \textbf{T}argeted \textbf{R}ecall\\
-\textbf{SR} & \textbf{S}paced \textbf{R}epetition\\
-\textbf{MoE} & \textbf{M}ixture of \textbf{E}xperts\\
-\textbf{AQA} & \textbf{A}daptive \textbf{Q}uantity \textbf{A}llocation\\
-\textbf{QFS} & \textbf{Q}uality-Focused \textbf{D}ata \textbf{S}election\\
-\textbf{RAG} & \textbf{R}etrieval \textbf{A}ugmented \textbf{G}eneration\\
-
+\textbf{LAH} & \textbf{L}ist \textbf{A}bbreviations \textbf{H}ere\\
+\textbf{WSF} & \textbf{W}hat (it) \textbf{S}tands \textbf{F}or\\
 
 \end{abbreviations}
-
-% %----------------------------------------------------------------------------------------
-% %	SYMBOLS
-% %----------------------------------------------------------------------------------------
-
-% \begin{symbols}{lll} % Include a list of Symbols (a three column table)
-
-% $a$ & distance & \si{\meter} \\
-% $P$ & power & \si{\watt} (\si{\joule\per\second}) \\
-% %Symbol & Name & Unit \\
-
-% \addlinespace % Gap to separate the Roman symbols from the Greek
-
-% $\omega$ & angular frequency & \si{\radian} \\
-
-% \end{symbols}
-
-% %----------------------------------------------------------------------------------------
-% %	DEDICATION
-% %----------------------------------------------------------------------------------------
-
-% \dedicatory{For/Dedicated to/To my\ldots} 
 
 %----------------------------------------------------------------------------------------
 %	THESIS CONTENT - CHAPTERS
@@ -331,7 +238,7 @@ I am incredibly blessed to have a wonderful support system of family and friends
 \include{Chapters/Methodology}
 \include{Chapters/Experiments} 
 \include{Chapters/Results}
-\include{Chapters/Conclusion}
+\include{Chapters/Conclusion} 
 
 %----------------------------------------------------------------------------------------
 %	THESIS CONTENT - APPENDICES
@@ -343,7 +250,7 @@ I am incredibly blessed to have a wonderful support system of family and friends
 % Uncomment the lines as you write the Appendices
 
 \include{Appendices/AppendixA}
-\include{Appendices/AppendixB}
+%\include{Appendices/AppendixB}
 %\include{Appendices/AppendixC}
 
 %----------------------------------------------------------------------------------------

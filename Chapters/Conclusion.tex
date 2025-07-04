@@ -1,28 +1,35 @@
+% Chapter Template
+
 \chapter{Conclusion} % Main chapter title
 
-\label{Conclusion} 
+\label{Conclusion} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
 %----------------------------------------------------------------------------------------
 %	SECTION 1
 %----------------------------------------------------------------------------------------
-\section{Key Findings}
-This thesis investigated the impact of task-incremental learning on the retention of a pre-trained model’s innate capabilities and subsequently learned tasks using parameter-efficient methods in two use cases: Code Generation and Natural Language Generation. Our implementation for task-incremental learning involved sequentially fine-tuning a pre-trained large language model on different tasks using LoRA-based parameter efficient fine-tuning.  The process pipeline involved sequentially training and merging LoRA adapter to have a single model with the capability to perform several tasks. This pipeline was used to conduct experiments with three different tasks for each use case. The impact of task-incremental fine-tuning was studied and measured using benchmark and task-specific evaluations performed before and after each fine-tuning step. Additionally, the impact of the order of tasks was studied by performing experiments with all permutations of task order for the three tasks for each use case. Our implementation also used replay-based mitigation for catastrophic forgetting to investigate its impact on the retention of the model’s pre-trained capabilities and task-specific abilities from previously learned tasks. Our research has led to several key findings:
-\begin{enumerate}
-\item Task-incremental instruction fine-tuning the model on a task led to improved performance on task-specific evaluations.
-\item Task-incremental instruction fine-tuning consistently led to a degradation in the model’s innate capabilities in both Code Generation and Natural Language Generation use cases. We found that the degree of impact of fine-tuning can vary depending on the nature of the task and the use case. 
-\item The order in which the tasks are fine-tuned had varying degrees of impact on the retention of the model's innate capabilities, as well as the task-specific capabilities of previously learned tasks.
-\item Our implementation of replay as a mitigation strategy showed mixed results. The overall effectiveness of replay in mitigating forgetting of the model's pre-trained capabilities was found to be limited and inconsistent across the different benchmarks and task-specific evaluations. 
-\item The addition of replay led to more stable and consistent performance across different ablations. 
-\end{enumerate}
 
-\section{Future Directions}
-This research can be further extended into many possible directions:
-\begin{enumerate}
-\item Extending to longer task sequences: This research could be further extended to study the effects of task-incremental learning on longer sequences of tasks.
-\item Exploring different model architectures: Further exploration can be done by performing task-incremental fine-tuning on different model architectures and investigating whether some architectures are more robust than others.
-\item Impact of task similarity: Future research could be done on investigating the correlation between task similarity and its impact on catastrophic forgetting to identify whether fine-tuning tasks with similar distributions and blurry task boundaries can cause interference with the learning and adaptation of the tasks.
-\item Improving the mitigation strategy: The current mitigation approach using CORE replay can be improved by using dynamic buffer sizes or by combining the current implementation with other mitigation approaches such as orthogonal regularization. 
-\item Exploring other mitigation techniques: Other advanced mitigation techniques can be explored and implemented.
-\end{enumerate}
+\section{Main Section 1}
 
-This thesis offered insights into the effects of task-incremental instruction fine-tuning using LoRA-based parameter-efficient fine-tuning on the retention of model's pre-trained capabilities and task-specific abilities from previously learned tasks. Our findings point out the need for carefully designing continual learning implementations for large language models that balance the acquisition of new knowledge with the retention of pre-trained capabilities.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ultricies lacinia euismod. Nam tempus risus in dolor rhoncus in interdum enim tincidunt. Donec vel nunc neque. In condimentum ullamcorper quam non consequat. Fusce sagittis tempor feugiat. Fusce magna erat, molestie eu convallis ut, tempus sed arcu. Quisque molestie, ante a tincidunt ullamcorper, sapien enim dignissim lacus, in semper nibh erat lobortis purus. Integer dapibus ligula ac risus convallis pellentesque.
+
+%-----------------------------------
+%	SUBSECTION 1
+%-----------------------------------
+\subsection{Subsection 1}
+
+Nunc posuere quam at lectus tristique eu ultrices augue venenatis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam erat volutpat. Vivamus sodales tortor eget quam adipiscing in vulputate ante ullamcorper. Sed eros ante, lacinia et sollicitudin et, aliquam sit amet augue. In hac habitasse platea dictumst.
+
+%-----------------------------------
+%	SUBSECTION 2
+%-----------------------------------
+
+\subsection{Subsection 2}
+Morbi rutrum odio eget arcu adipiscing sodales. Aenean et purus a est pulvinar pellentesque. Cras in elit neque, quis varius elit. Phasellus fringilla, nibh eu tempus venenatis, dolor elit posuere quam, quis adipiscing urna leo nec orci. Sed nec nulla auctor odio aliquet consequat. Ut nec nulla in ante ullamcorper aliquam at sed dolor. Phasellus fermentum magna in augue gravida cursus. Cras sed pretium lorem. Pellentesque eget ornare odio. Proin accumsan, massa viverra cursus pharetra, ipsum nisi lobortis velit, a malesuada dolor lorem eu neque.
+
+%----------------------------------------------------------------------------------------
+%	SECTION 2
+%----------------------------------------------------------------------------------------
+
+\section{Main Section 2}
+
+Sed ullamcorper quam eu nisl interdum at interdum enim egestas. Aliquam placerat justo sed lectus lobortis ut porta nisl porttitor. Vestibulum mi dolor, lacinia molestie gravida at, tempus vitae ligula. Donec eget quam sapien, in viverra eros. Donec pellentesque justo a massa fringilla non vestibulum metus vestibulum. Vestibulum in orci quis felis tempor lacinia. Vivamus ornare ultrices facilisis. Ut hendrerit volutpat vulputate. Morbi condimentum venenatis augue, id porta ipsum vulputate in. Curabitur luctus tempus justo. Vestibulum risus lectus, adipiscing nec condimentum quis, condimentum nec nisl. Aliquam dictum sagittis velit sed iaculis. Morbi tristique augue sit amet nulla pulvinar id facilisis ligula mollis. Nam elit libero, tincidunt ut aliquam at, molestie in quam. Aenean rhoncus vehicula hendrerit.

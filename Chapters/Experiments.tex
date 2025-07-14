@@ -81,6 +81,7 @@ Table \ref{tab:dataSummary} outlines a summary of all the datasets used in our e
 
 \begin{table}[h!]
   \centering
+    \caption{Dataset Summary.}
    \begin{tabular}{|l|l|l|l|l|l|l|}
     \hline
     \textbf{Name} & \textbf{Domain} & \textbf{Variant} & \textbf{In size} & \textbf{Classes} & \textbf{Train Size} & \textbf{Test Size} \\
@@ -93,7 +94,7 @@ Table \ref{tab:dataSummary} outlines a summary of all the datasets used in our e
     IMDB Reviews & Language & complex & 5000 & 2 & 25000 & 25000 \\
     \hline
   \end{tabular}
-  \caption{Dataset Summary.}
+
   \label{tab:dataSummary}
 \end{table}
 
@@ -112,51 +113,6 @@ The following six model architectures were tested for each dataset. Since the ex
 \item \textbf{Maximal SPN}: are designed to maximize all connections between perceptrons for a given number of neurons. These models aim to address \ref{RQ2} by determining the upper performance threshold, while fully sacrificing efficiency and training time constraints in the pursuit of accuracy.
 \item \textbf{Pruned Maximal SPN}: aim to preserve the performance of Maximal SPNs while optimizing training time. Maximal SPNs undergo a pruning process where zeroed-out weights are eliminated, leading to some neurons being disconnected. These disconnected neurons are subsequently merged into layers, enhancing the time complexity of the model. This approach addresses \ref{RQ6} and allows us to explore the possibility of optimizing maximal MLPs for time efficiency without compromising their higher performance accuracy.
 \end{enumerate}
-
-Figures \ref{fig:MLPWeights}, \ref{fig:fwSPNWeights} and \ref{fig:MaxSPNWeights} illustrate the differences between the baseline MLP, Free Weights SPN, and Maximal SPN model architectures while figures \ref{fig:minMLP} and \ref{fig:minSPN} highlight a direct comparison between minimal MLP and SPN architectures.
-
-\begin{figure}[H]
-    \centering
-    \begin{minipage}{0.45\textwidth}
-        \centering
-        \includegraphics[height=0.25\textheight, width=\linewidth]{Figures/Experiments/MLP_weights.png} % first figure itself
-        \captionsetup{width=\linewidth}
-        \caption{MLP Weight Matrix}
-        \label{fig:MLPWeights}
-    \end{minipage}\hfill
-    \begin{minipage}{0.45\textwidth}
-        \centering
-        \includegraphics[height=0.25\textheight, width=\linewidth]{Figures/Experiments/Free_Weights_SPN_Weights.png} % second figure itself
-        \captionsetup{width=\linewidth}
-        \caption{Free Weights SPN Matrix}
-        \label{fig:fwSPNWeights}
-    \end{minipage}
-    \begin{minipage}{0.7\textwidth}
-        \centering
-        \includegraphics[height=0.3\textheight, width=\linewidth]{Figures/Experiments/Neuron_Based_Maximal_SPN_Weights.png} % first figure itself
-        \captionsetup{width=\linewidth}
-        \caption{Maximal SPN Weight Matrix}
-        \label{fig:MaxSPNWeights}
-    \end{minipage}\hfill
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \begin{minipage}{0.45\textwidth}
-        \centering
-        \includegraphics[height=0.25\textheight, width=\linewidth]{Figures/Experiments/Minimal_MLP_weights.png} % first figure itself
-        \captionsetup{width=\linewidth}
-        \caption{Minimal MLP Weight Matrix}
-        \label{fig:minMLP}
-    \end{minipage}\hfill
-    \begin{minipage}{0.45\textwidth}
-        \centering
-        \includegraphics[height=0.25\textheight, width=\linewidth]{Figures/Experiments/Minimal_SPN_Weights.png} % second figure itself
-        \captionsetup{width=\linewidth}
-        \caption{Minimal SPN Weight Matrix}
-        \label{fig:minSPN}
-    \end{minipage}
-\end{figure}
 
 
 %----------------------------------------------------------------------------------------

@@ -4,32 +4,36 @@
 
 \label{Conclusion} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
+This thesis explored the potential benefits of enhancing the internal connectivity and layer complexity of Multi-Layer Perceptrons (MLPs) through techniques such as Free Weights and Maximal Dense Connections introduced in Sarosh’s Perceptron Networks (SPNs). The investigation yielded several key observations:
+
 %----------------------------------------------------------------------------------------
 %	SECTION 1
 %----------------------------------------------------------------------------------------
 
-\section{Main Section 1}
+\section{Key Findings}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ultricies lacinia euismod. Nam tempus risus in dolor rhoncus in interdum enim tincidunt. Donec vel nunc neque. In condimentum ullamcorper quam non consequat. Fusce sagittis tempor feugiat. Fusce magna erat, molestie eu convallis ut, tempus sed arcu. Quisque molestie, ante a tincidunt ullamcorper, sapien enim dignissim lacus, in semper nibh erat lobortis purus. Integer dapibus ligula ac risus convallis pellentesque.
+\begin{enumerate}
+    \item Increasing internal connections through the use of Free Weights generally enhanced the performance of MLP models, whether applied to baseline or minimal architectures. The introduction of Free Weights consistently demonstrated clear benefits in terms of improved accuracy without significantly compromising computational efficiency.
+    \item Within specific datasets, such as the 20 Newsgroups dataset in the language domain, the minimal models notably outperformed their larger competitors. This indicates that for certain data types, architectures with fewer layers might yeild better results. However, the SPN variant of the minimal model still performed better in this instance, suggesting that even with fewer layers, higher internal connectivity provided through Free Weights may yield better performance.
+    \item Maximal SPNs consistently demonstrated poor efficiency relative to their performance improvements over baseline MLPs, making them impractical for real-world applications. Nonetheless, they served effectively as benchmarks, establishing upper performance limits for perceptron-based models, making them useful in the research and development phases of developing AI.
+    \item The implemented pruning algorithm successfully enhanced the efficiency of maximal SPNs with minimal performance losses. However, the effectiveness of pruning varied significantly across different tasks, and the time required for pruning frequently matched or exceeded the training time of maximal SPNs. Consequently, while pruning can enhance throughput in deployment scenarios, it offers limited practical benefits during research and development phases.
+    \item Performance analyses across different domains revealed that both SPNs and MLPs excel particularly in tabular data scenarios. This superior performance is likely due to the meaningful nature of individual features within tabular datasets and their intricate internal relationships. Conversely, in text and image domains, individual pixels or characters hold limited standalone significance, potentially explaining the reduced effectiveness of perceptron-based models.
+    \item In simpler tasks within text and image domains, both MLPs and SPNs demonstrated respectable performance, indicating an ability to capture and utilize basic patterns effectively. Notably, SPNs consistently provided performance enhancements over MLPs in these simpler tasks. However, for complex and challenging datasets, perceptron-based models significantly underperformed compared to specialized architectures such as Convolutional Neural Networks (CNNs)\cite{krizhevsky2012imagenet}, Vision Transformers (ViTs)\cite{dosovitskiy2020image}, Transformer-based language models\cite{vaswani2017attention}, and Recurrent Neural Networks (RNNs)\cite{lipton2015critical}.
+\end{enumerate}
 
-%-----------------------------------
-%	SUBSECTION 1
-%-----------------------------------
-\subsection{Subsection 1}
-
-Nunc posuere quam at lectus tristique eu ultrices augue venenatis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam erat volutpat. Vivamus sodales tortor eget quam adipiscing in vulputate ante ullamcorper. Sed eros ante, lacinia et sollicitudin et, aliquam sit amet augue. In hac habitasse platea dictumst.
-
-%-----------------------------------
-%	SUBSECTION 2
-%-----------------------------------
-
-\subsection{Subsection 2}
-Morbi rutrum odio eget arcu adipiscing sodales. Aenean et purus a est pulvinar pellentesque. Cras in elit neque, quis varius elit. Phasellus fringilla, nibh eu tempus venenatis, dolor elit posuere quam, quis adipiscing urna leo nec orci. Sed nec nulla auctor odio aliquet consequat. Ut nec nulla in ante ullamcorper aliquam at sed dolor. Phasellus fermentum magna in augue gravida cursus. Cras sed pretium lorem. Pellentesque eget ornare odio. Proin accumsan, massa viverra cursus pharetra, ipsum nisi lobortis velit, a malesuada dolor lorem eu neque.
+Overall, SPNs consistently offered improvements over traditional MLP architectures, delivering enhanced flexibility in connectivity and complexity through variations in layer count and internal connections. SPNs were regularly able to boost MLP performance while incurring minimal to negligible impacts on throughput and training efficiency. Additionally, SPNs consistently achieved higher Area Under Curve (AUC) efficiency scores, indicating their broader effectiveness and robustness as an evolution of traditional MLP structures.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 2
 %----------------------------------------------------------------------------------------
 
-\section{Main Section 2}
+\section{Future Directions}
 
-Sed ullamcorper quam eu nisl interdum at interdum enim egestas. Aliquam placerat justo sed lectus lobortis ut porta nisl porttitor. Vestibulum mi dolor, lacinia molestie gravida at, tempus vitae ligula. Donec eget quam sapien, in viverra eros. Donec pellentesque justo a massa fringilla non vestibulum metus vestibulum. Vestibulum in orci quis felis tempor lacinia. Vivamus ornare ultrices facilisis. Ut hendrerit volutpat vulputate. Morbi condimentum venenatis augue, id porta ipsum vulputate in. Curabitur luctus tempus justo. Vestibulum risus lectus, adipiscing nec condimentum quis, condimentum nec nisl. Aliquam dictum sagittis velit sed iaculis. Morbi tristique augue sit amet nulla pulvinar id facilisis ligula mollis. Nam elit libero, tincidunt ut aliquam at, molestie in quam. Aenean rhoncus vehicula hendrerit.
+This research offers several promising directions for future exploration:
+
+\begin{enumerate}
+    \item Enhancing the pruning algorithm for SPNs: The current pruning method, inspired by the lottery ticket hypothesis, employs random pruning, which is suboptimal for SPNs. A more effective approach would be a weighted pruning algorithm that prioritizes pruning the right edges of the staircase weight matrix, which are crucial for determining layer complexity and throughput.    
+    \item Dynamic layer complexity during pruning: Instead of maintaining the same layer complexity throughout the pruning iterations, future implementations could dynamically adjust the model's architecture after pruning steps. A challenge here is ensuring that removing connections mid-process does not negatively impact gradient propagation and the overall pruning outcome. Addressing this would significantly enhance pruning efficiency.
+    \item Integration with specialized architectures: While SPNs demonstrate clear improvements over traditional MLPs, their integration with current state-of-the-art architectures such as MLP Mixer Architectures\cite{tolstikhin2021mlp}, CNNs\cite{krizhevsky2012imagenet}, RNNs\cite{lipton2015critical}, and Transformer-based models\cite{vaswani2017attention} remains unexplored. Replacing perceptron-based components in these architectures with SPNs could potentially enhance these advanced models.
+    \item Application of SPN techniques in convolutional neural networks (CNNs): Given the structural similarities between convolutional operations and perceptron-based models, incorporating SPN techniques such as Free Weights into convolutional blocks could improve CNN performance, representing a significant avenue for further research.
+\end{enumerate}

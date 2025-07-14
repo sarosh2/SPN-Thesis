@@ -51,6 +51,13 @@ Time Complexity: O(n).
 
 Space Complexity: O(2d * n²).
 
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.7\textwidth]{Figures/Methodology/Neuron_Based_Maximal_SPN_Weights.png}
+\caption{Illustration of a sequential Maximal SPN.}
+\label{fig:seqMaxSpn}
+\end{figure}
+
 \subsection{Sequential Representation with Shared Input}
 This approach is identical to the previous one, with the key difference being that instead of storing inputs temporarily, neurons index slices from an input variable shared across the entire network. This indexing does not add significantly to the time complexity but optimizes it by eliminating redundancy.
 
@@ -71,11 +78,25 @@ Time Complexity: O(n).
 
 Space Complexity: O(d * n²).
 
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.7\textwidth]{Figures/Methodology/Block_Based_Maximal_SPN_Weights.png}
+\caption{Illustration of a block based Maximal SPN.}
+\label{fig:blockMaxSpn}
+\end{figure}
+
 \section{Free Weights}
 
 When projecting traditional MLPs onto a lower triangular matrix, we notice weight blocks isolated both vertically and horizontally. These isolated weights represent the independent layers in traditional MLPs. The right side of the matrix defines the time complexity of the forward pass; the more layers present, the longer the processing time. However, the left side of the matrix contains Free Weights, zeroed-out weights that do not contribute to time complexity.
  
 Using free weights in traditional MLPs is similar to concatenating the output of a layer to its input before passing it to the next layer. This method increases the space complexity of the MLP to O(n²) while keeping the time complexity at O(l), where l is the number of layers. A major advantage of this approach is that subsequent layers can learn features based on both the input and the features from other previous layers, enabling the network to learn more complex patterns.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.7\textwidth]{Figures/Methodology/Free_Weights_SPN_Weights.png}
+\caption{Illustration of a traditional MLP with Free Weights.}
+\label{fig:fwSpn}
+\end{figure}
 
 \section{Minimal SPNs}
 
@@ -87,6 +108,13 @@ On the other end of the spectrum, Minimal SPNs seek to minimize the number of bl
 2.	If the total number of neurons exceeds the output size (n > o), the network must have at least two layers: one layer of size n - o for the input, and a second layer of size o that takes both the input and the output of the first layer.
  
 Minimal SPNs provide the best time complexity of O(1) and the best space complexity of O(n²).
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.7\textwidth]{Figures/Methodology/Minimal_SPN_Weights.png}
+\caption{Illustration of a Minimal SPN.}
+\label{fig:minSpn}
+\end{figure}
 
 \section{Maximal SPNs with Pruning}
 

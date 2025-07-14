@@ -8,28 +8,71 @@
 %	SECTION 1
 %----------------------------------------------------------------------------------------
 
-\section{Main Section 1}
+\section{Neural Architecture Search (NAS)}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ultricies lacinia euismod. Nam tempus risus in dolor rhoncus in interdum enim tincidunt. Donec vel nunc neque. In condimentum ullamcorper quam non consequat. Fusce sagittis tempor feugiat. Fusce magna erat, molestie eu convallis ut, tempus sed arcu. Quisque molestie, ante a tincidunt ullamcorper, sapien enim dignissim lacus, in semper nibh erat lobortis purus. Integer dapibus ligula ac risus convallis pellentesque.
-
+Neural Architecture Search (NAS) is an automated method for optimizing neural network architectures. The primary objective of NAS is to find an optimal architecture that provides the best trade-off between model performance (accuracy) and resource usage (computational efficiency, parameter count, and memory usage) \cite{elsken2019neural}. NAS has significantly contributed to the advancement of deep learning by automating architecture design, traditionally a manually intensive process.
 %-----------------------------------
 %	SUBSECTION 1
 %-----------------------------------
-\subsection{Subsection 1}
+\subsection{Current Techniques in NAS}
 
-Nunc posuere quam at lectus tristique eu ultrices augue venenatis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam erat volutpat. Vivamus sodales tortor eget quam adipiscing in vulputate ante ullamcorper. Sed eros ante, lacinia et sollicitudin et, aliquam sit amet augue. In hac habitasse platea dictumst.
+NAS techniques are broadly categorized into reinforcement learning (RL)-based methods, evolutionary algorithms (EA), and gradient-based optimization methods.
 
-%-----------------------------------
-%	SUBSECTION 2
-%-----------------------------------
+\textbf{Reinforcement Learning-based NAS} techniques use an RL agent that generates neural architectures and updates its strategy based on rewards from evaluating the architectures \cite{zoph2016neural}. Notable examples include the work by Zoph and Le, where an RNN controller designs neural architectures \cite{zoph2016neural}.
 
-\subsection{Subsection 2}
-Morbi rutrum odio eget arcu adipiscing sodales. Aenean et purus a est pulvinar pellentesque. Cras in elit neque, quis varius elit. Phasellus fringilla, nibh eu tempus venenatis, dolor elit posuere quam, quis adipiscing urna leo nec orci. Sed nec nulla auctor odio aliquet consequat. Ut nec nulla in ante ullamcorper aliquam at sed dolor. Phasellus fermentum magna in augue gravida cursus. Cras sed pretium lorem. Pellentesque eget ornare odio. Proin accumsan, massa viverra cursus pharetra, ipsum nisi lobortis velit, a malesuada dolor lorem eu neque.
+\textbf{Evolutionary Algorithm-based NAS} methods use population-based optimization inspired by biological evolution, including mutation, crossover, and selection to evolve architectures \cite{real2019regularized}. Real et al. demonstrated that evolutionary methods could effectively evolve architectures that outperform manually designed ones \cite{real2019regularized}.
+
+\textbf{Gradient-based NAS} methods, such as Differentiable Architecture Search (DARTS), formulate NAS as a continuous optimization problem, allowing for efficient gradient-based optimization \cite{liu2018darts}. DARTS has become popular due to its efficiency in discovering competitive architectures with lower computational cost.
+
+\begin{table}[ht]
+\centering
+\caption{Comparison of NAS Techniques}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Technique} & \textbf{Advantages} & \textbf{Disadvantages} \\
+\hline
+RL-based & High flexibility & Computationally expensive \\
+\hline
+EA-based & Effective global search & Requires extensive evaluations \\
+\hline
+Gradient-based & Efficient and scalable & Sensitive to initialization \\
+\hline
+\end{tabular}
+\label{tab:nas_techniques}
+\end{table}
 
 %----------------------------------------------------------------------------------------
 %	SECTION 2
 %----------------------------------------------------------------------------------------
 
-\section{Main Section 2}
+\section{Multi-Layer Perceptrons (MLPs)}
+Multi-Layer Perceptrons (MLPs) are classical feedforward artificial neural networks composed of multiple layers of nodes (neurons). Each node employs a non-linear activation function enabling the network to learn complex patterns through supervised learning techniques, such as backpropagation \cite{rumelhart1986learning}. MLPs have traditionally served as baseline models due to their simplicity and general applicability across diverse tasks, including classification and regression problems.
 
-Sed ullamcorper quam eu nisl interdum at interdum enim egestas. Aliquam placerat justo sed lectus lobortis ut porta nisl porttitor. Vestibulum mi dolor, lacinia molestie gravida at, tempus vitae ligula. Donec eget quam sapien, in viverra eros. Donec pellentesque justo a massa fringilla non vestibulum metus vestibulum. Vestibulum in orci quis felis tempor lacinia. Vivamus ornare ultrices facilisis. Ut hendrerit volutpat vulputate. Morbi condimentum venenatis augue, id porta ipsum vulputate in. Curabitur luctus tempus justo. Vestibulum risus lectus, adipiscing nec condimentum quis, condimentum nec nisl. Aliquam dictum sagittis velit sed iaculis. Morbi tristique augue sit amet nulla pulvinar id facilisis ligula mollis. Nam elit libero, tincidunt ut aliquam at, molestie in quam. Aenean rhoncus vehicula hendrerit.
+However, MLPs typically suffer from issues such as overfitting and computational inefficiency when scaling to deeper and wider networks. This motivates research into improving the architectural efficiency and effectiveness of MLPs through enhanced connectivity, optimized neuron allocation, and specialized training procedures.
+
+\section{Pruning in Neural Networks}
+Pruning is a method to reduce network complexity by eliminating redundant connections or neurons, effectively improving computational efficiency without significantly compromising performance \cite{han2015learning}. It seeks to achieve sparsity within the network, reducing the model size, memory footprint, and inference latency, thus facilitating deployment in resource-constrained environments.
+
+Pruning methods can be classified into magnitude-based, structure-based, and learning-based pruning:
+
+\textbf{Magnitude-based pruning} involves removing weights based on their absolute magnitude, assuming low-magnitude weights contribute less to the network's predictive capability \cite{han2015learning}.
+
+\textbf{Structured pruning} removes entire channels or layers, maintaining regular structure beneficial for hardware acceleration \cite{he2017channel}.
+
+\textbf{Learning-based pruning}, such as iterative magnitude pruning, incrementally prunes the network while retraining it to recover accuracy \cite{han2015learning}.
+
+\section{Lottery Ticket Hypothesis}
+The Lottery Ticket Hypothesis, proposed by Frankle and Carbin, posits that dense, randomly-initialized neural networks contain smaller subnetworks (winning tickets) which, when trained in isolation, can match or exceed the test accuracy of the original network \cite{frankle2018lottery}.
+
+This hypothesis suggests that initialization plays a crucial role in neural network training. Frankle and Carbin’s pruning approach involves:
+\begin{enumerate}
+\item Training the original network fully.
+\item Pruning a fraction of the lowest magnitude weights.
+\item Resetting the remaining weights to their initial values.
+\item Repeating this iterative process multiple times.
+\end{enumerate}
+
+The Lottery Ticket Hypothesis has provided a theoretical and empirical foundation for understanding network pruning and initialization strategies. It emphasizes the importance of structured pruning approaches, challenging the traditional random pruning practices.
+
+\section{Summary}
+This literature review highlights the advancements in neural architecture optimization through NAS, the foundational structure and limitations of MLPs, and the efficacy of pruning methods, particularly through the lens of the Lottery Ticket Hypothesis. These areas collectively inform strategies for improving neural network performance and efficiency, forming the theoretical underpinning of the current research.

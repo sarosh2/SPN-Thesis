@@ -591,14 +591,28 @@ Overall, SPNs showed a slight advantage over MLPs in this task, but all the mode
 
 \section{Discussion}
 
-RQ1: Enhanced neural connectivity significantly boosted SPNs’ accuracy and learning capacity.
+This section seeks to answer the research questions posed in the introduction using the findings from the experimental results.
 
-RQ2: Maximal SPNs achieved the highest accuracy at the expense of computational efficiency.
+\subsection*{RQ1: Does increasing connection density in SPNs, while keeping the layer count and design identical to MLPs, lead to better model performance?}
 
-RQ3: Minimal SPNs balanced accuracy with throughput efficiency better than minimal MLPs.
+Across the majority of experiments, especially for the MNIST image dataset and both tabular datasets, SPNs with increased connection density clearly outperformed traditional MLPs with the same number of layers and neurons. In Table~\ref{tab:mnistResults} and Table~\ref{tab:covertypeResults}, fw\_spn consistently achieved higher test accuracy than base\_mlp, confirming that enhanced connectivity can yield better model performance. This effect was strongest in structured datasets where feature relationships are important and more easily captured with additional internal connections.
 
-RQ4: Pruning effectively optimized maximal SPNs, maintaining accuracy while improving efficiency.
+\subsection*{RQ2: Does removing connectivity restrictions in MLP architectures (allowing arbitrary neuron-to-neuron connections) enhance the network’s learning capability or representational power?}
 
-RQ5: SPNs showed consistent performance gains due to superior structural connectivity.
+The results affirm that lifting connectivity restrictions enhances both representational capacity and learning ability. In both simple and complex tabular datasets, SPNs consistently demonstrated better performance, as indicated by higher best test accuracy and area under curve efficiency. However, in highly complex domains such as CIFAR-10 and IMDB Reviews, the representational advantage of SPNs was limited by the fundamental capabilities of perceptron-based models, which struggle to capture spatial or semantic relationships lost during input flattening or vectorization. Thus, while enhanced connectivity is powerful, its effectiveness is domain-dependent.
 
-RQ6: SPNs successfully optimized training time without compromising accuracy, validating their practical advantages.
+\subsection*{RQ3: Can SPNs with fewer layers but higher connection density match or exceed the performance of deeper MLPs, thereby improving throughput efficiency and reducing training times?}
+
+Experiments with minimal models show that shallow, densely connected networks can often match or surpass deeper MLPs, especially on tabular and certain text datasets (e.g., Newsgroups 20). For instance, Table~\ref{tab:newsgroupsResults} demonstrates that min\_spn achieved both the highest test accuracy and best efficiency scores, while maintaining a slight edge over min\_mlp in test accuracy across most tasks. This supports the view that increasing connection density can compensate for network depth, resulting in more efficient architectures without sacrificing performance.
+
+\subsection*{RQ4: How do SPNs compare to MLPs in terms of training time, computational efficiency, memory usage, and predictive accuracy across a range of datasets and tasks?}
+
+SPNs generally require more memory due to their larger parameter count, as seen in all summary tables. However, their training efficiency and throughput efficiency were often on par with, or better than, MLPs, especially in the tabular and simple datasets. Notably, pruned SPNs demonstrated that computational efficiency can be recovered through targeted pruning, reducing both training time and memory usage while preserving accuracy (see Tables~\ref{tab:mnistResults}, \ref{tab:covertypeResults}). On complex image and language tasks, neither MLPs nor SPNs could match the specialized models (CNNs, ViTs, Transformers), and the efficiency benefits of SPNs were less pronounced.
+
+\subsection*{RQ5: Does the increased architectural flexibility of SPNs improve their ability to generalize across diverse datasets and tasks compared to standard MLPs?}
+
+The experimental results show that SPNs' flexibility improves generalization in many settings, particularly for tabular and structured datasets. The ability to learn from more complex feature interactions enables SPNs to adapt to different data distributions, resulting in more robust performance across tasks. However, for highly unstructured or semantically complex tasks, such as image classification in CIFAR-10 or sentiment analysis in IMDB Reviews, the generalization advantage of SPNs diminishes, and specialized architectures remain superior.
+
+\subsection*{RQ6: After maximizing connections in SPNs, can pruning strategies maintain high predictive performance while significantly improving computational efficiency and training time?}
+
+Pruning strategies applied to maximal SPNs were largely successful in reducing computational overhead without substantially sacrificing predictive accuracy. For example, in the MNIST and Covertype experiments, pruned SPNs maintained or even slightly improved peak test accuracy while reducing mean epoch time (see corresponding metrics tables). However, the practical benefit was sometimes offset by the additional time required for the pruning process itself, indicating that more efficient pruning algorithms could further enhance the value of this approach.

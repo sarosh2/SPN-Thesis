@@ -15,78 +15,64 @@
 
 %----------------------------------------------------------------------------------------
 
-The Perceptron, introduced by Frank Rosenblatt in 1958, is one of the earliest and most influential models in machine learning (ML). Designed to solve binary classification problems, the perceptron is a simple linear classifier inspired by the biological neurons in the human brain. It works by assigning weights to a set of input features and calculating a weighted sum of these features, which is passed through an activation function to determine the classification. The model iteratively adjusts these weights based on prediction errors, learning from the data until it reaches an optimal configuration.
+The automated design of neural network architectures has emerged as a key frontier in modern machine learning, driven by the growing complexity of tasks and the scale of available data. Neural Architecture Search (NAS)~\cite{elsken2019neural} has enabled researchers to systematically explore vast design spaces, moving beyond manual trial-and-error to discover architectures that strike an optimal balance between performance and efficiency. Despite this progress, many neural network architectures, such as Multi-Layer Perceptrons (MLPs)~\cite{rumelhart1986learning}, remain limited by conventional connectivity patterns that restrict information flow to simple, hierarchical pathways.
 
-However, while the perceptron performs well for linearly separable data, it struggles with more complex, non-linear problems. This limitation prompted the development of the Multi-Layer Perceptron (MLP) in the 1980s. MLPs extend the perceptron by adding multiple layers of perceptrons, enabling the model to learn non-linear relationships within the data. The breakthrough of backpropagation, introduced by Paul Werbos in the 1970s and popularized by Geoffrey Hinton and others in the 1980s, made it possible to train MLPs by calculating gradients and adjusting the weights across multiple layers.
-
-The evolution of neural networks has given rise to specialized architectures such as Convolutional Neural Networks (CNNs) for image tasks and Transformer-based Large Language Models (LLMs) for natural language processing. Despite this, the MLP remains a foundational architecture that laid the groundwork for more advanced models. MLPs consist of multiple layers where each neuron in one layer is fully connected to every neuron in the subsequent layer, enabling the model to learn complex patterns in data, such as those found in image and speech recognition.
-
-Recent research in neural network architecture design has evolved into a field known as Neural Architecture Search (NAS), which aims to find optimal architectures for a specific task by exploring various combinations of hyperparameters, layers, and connections. NAS employs search strategies, such as reinforcement learning, evolutionary algorithms, and gradient-based methods, to efficiently navigate the vast space of possible architectures. Despite the progress made, traditional MLPs are constrained by hierarchical connections between layers, which limit their ability to explore more flexible connectivity patterns, such as those involving skip connections within or between layers. While advancements like Residual Networks (ResNet) have introduced skip connections to alleviate this issue, the full potential of neuron connectivity remains untapped.
-
-This thesis proposes a novel approach, Sarosh's Perceptron Networks (SPNs), to address these limitations by enabling unrestricted connectivity between neurons. Unlike traditional MLPs, SPNs eliminate the constraints on layer-to-layer connections, allowing neurons to interact more freely across the network. By fostering greater flexibility in connectivity, SPNs are hypothesized to enhance model performance without introducing the computational overhead typically associated with large, fully connected networks. This work aims to improve the expressiveness and efficiency of neural network architectures, offering new avenues for both theoretical exploration and practical applications in machine learning.
-
+This thesis aims to challenge and expand this architectural paradigm. It introduces Sarosh’s Perceptron Networks (SPNs), a novel approach that breaks free from the rigid layer-by-layer connectivity of traditional MLPs and allows neurons more freedom in forming cross-layer connection that lead to more complex architectures. By allowing for more flexible and expressive patterns of neuron connectivity, SPNs seek to unlock new levels of model capability and generalization. This work investigates whether such architectural freedom can yield meaningful improvements in performance and efficiency, and examines the implications for the future of neural network architecture design and the field of NAS.
 
 \section{Background and Motivation}
-The Perceptron marked the first significant step in the evolution of artificial neural networks (ANNs). Rosenblatt’s model was inspired by the brain's structure, where neurons are connected by synapses and can adjust their strengths (synaptic weights) based on learning experiences. The Perceptron algorithm iterates over a set of input data, adjusts weights, and improves its ability to classify data. However, the perceptron could only solve problems that were linearly separable, leading to the need for more sophisticated architectures.
+Neural Architecture Search (NAS)~\cite{elsken2019neural} has emerged as a prominent research area in machine learning, aiming to automate the design process of neural network architectures. NAS systematically explores vast spaces of possible network configurations to discover architectures that optimally balance performance, computational cost, and efficiency for specific tasks. This exploration typically involves methods such as reinforcement learning, evolutionary algorithms, and gradient-based optimization, each strategically navigating a complex, multidimensional search space to find optimal architectural solutions.
 
-In the early 1980s, the Multi-Layer Perceptron (MLP) emerged, and the backpropagation algorithm was introduced to train these networks. Backpropagation allowed the MLPs to learn complex, non-linear functions by adjusting the weights across multiple layers using gradient descent. This innovation enabled the training of deep networks and formed the basis for modern deep learning techniques.
+At the foundational level of neural network architectures lies the perceptron~\cite{rosenblatt1958perceptron}, introduced by Frank Rosenblatt in 1958. As one of the earliest and most influential machine learning models, the perceptron serves as a linear binary classifier, inspired by biological neurons. However, while effective for linearly separable problems, perceptrons inherently struggle to capture complex, non-linear patterns.
 
-While MLPs were revolutionary, challenges remained regarding the optimal configuration of these networks. The number of layers and neurons in each layer, as well as how to connect these neurons, remained an open question. While the basic idea was that deeper networks (with more layers) could learn more complex patterns, no clear guidelines existed for how deep or wide the networks should be. Researchers began exploring empirical approaches to determine the ideal architecture.
+To overcome this limitation, Multi-Layer Perceptrons (MLPs)~\cite{rumelhart1986learning} were developed, adding multiple interconnected layers of perceptrons to facilitate learning non-linear relationships. MLPs became capable of effectively training deep architectures through gradient-based optimization. Despite advancements leading to specialized architectures such as Convolutional Neural Networks (CNNs)~\cite{krizhevsky2012imagenet} for image processing and Transformer-based Large Language Models (LLMs)~\cite{vaswani2017attention} for natural language tasks, MLPs continue to serve as a fundamental building block within neural network research.
 
-One of the key insights came from "Efficient Backprop" (1998) by Yann LeCun, Léon Bottou, Geneviève Orr, and Klaus-Robert Müller, which highlighted methods for optimizing backpropagation. They proposed better weight initialization, momentum, and adaptive learning rates to accelerate convergence and prevent models from getting stuck in local minima. These methods made it possible to train deeper networks more effectively.
-
-Further breakthroughs in architecture design came with Deep Residual Networks (ResNets), introduced in 2015 by Kaiming He and colleagues. ResNets utilized skip connections (residual blocks) that allowed information to bypass intermediate layers. This innovation solved the vanishing gradient problem, enabling the training of networks with hundreds or thousands of layers.
-
-However, despite these advancements, the architectural design of neural networks remains an empirical challenge. Neural Architecture Search (NAS) emerged as an automated way to discover optimal architectures, but it is still computationally expensive and often depends on pre-existing knowledge.
-%----------------------------------------------------------------------------------------
+NAS methodologies have been applied extensively to refine MLP architectures, systematically tuning hyperparameters such as neuron count, layer depth, and activation functions. However, traditional MLP architectures have typically constrained their search spaces to hierarchical layer-to-layer connectivity, inherently neglecting more flexible connectivity patterns such as non-sequential cross layer connectivity and internal connections between neurons in the same layer. While architectures like Residual Networks (ResNet)~\cite{he2016deep} have introduced skip connections to partially mitigate this limitation, the potential of unrestricted neuron connectivity within MLP architectures remains largely unexplored.
 
 \section{Problem Statement}
 
-Although MLPs and other deep learning models have made significant strides in various tasks, the design of their architecture remains a critical issue. Traditional MLPs suffer from a limited connectivity between neurons. Neurons within a single layer do not interact with one another, and neurons in different layers are connected only via intermediate neurons. This design limits the network's ability to learn complex, interdependent features in the data.
+The SPNs introduced in this thesis provide a novel approach designed to unlock the unexplored connectivity potential within traditional MLP search spaces. SPNs remove the conventional constraints of strict hierarchical connections, enabling more flexible interactions between neurons across the entire network. By facilitating direct neuron-to-neuron connections irrespective of layer boundaries, SPNs aim to enhance neural network expressiveness and improve model performance significantly.
 
-Despite advancements such as skip connections and residual networks, these solutions do not fully address the limitations of traditional MLP architectures. There is still a gap in the literature regarding the optimal arrangement of weights and neuron connectivity, which could potentially improve model performance, reduce training time, and allow for smaller, more efficient networks.
+Critically, SPNs seek to expand architectural expressivity without incurring substantial computational overhead or sacrificing training efficiency. This research systematically investigates whether leveraging the expanded search space provided by SPNs can achieve meaningful performance improvements compared to traditional MLPs. By thoroughly exploring the advantages offered by this approach, this thesis aims to provide new insights and methodologies that could significantly impact the design and optimization of neural network architectures.
+
 %----------------------------------------------------------------------------------------
 
 \section{Research Gap and Contributions}
 
-There is a significant gap in the literature concerning the optimization of neural network architectures, particularly in terms of neuron connectivity. Traditional MLPs rely on fixed architectural structures that restrict how neurons in different layers interact. Although skip connections have improved deep networks by mitigating the vanishing gradient problem, they still impose certain constraints, such as requiring neurons to have the same dimensionality or limiting connections to adjacent layers.
-
-This thesis introduces Denser Perceptron Networks (DPNs), a new framework that eliminates the restriction of fixed connectivity patterns between neurons. DPNs allow for fully connected networks, where any two neurons can be linked. This increased connectivity has the potential to improve the model’s ability to learn complex, interdependent features, potentially leading to improved generalization and performance.
+There is a significant gap in the existing literature regarding the optimization of neural network architectures, particularly concerning neuron connectivity. Traditional MLPs rely on rigid, fixed structures that inherently limit the interactions among neurons across different layers. Although ResNet~\cite{he2016deep} introduced skip connections to address some of these limitations, it still imposes restrictive conditions, such as requiring consistent dimensionality across residually connected layers or limiting connections primarily to adjacent layers.
 
 The main contributions of this thesis are:
-
-The introduction of DPNs: A new neural network architecture that eliminates the restrictions of traditional MLP designs.
-
-Empirical evaluation: A comparison of DPNs with traditional MLPs to determine whether the increased connectivity results in better performance, faster training, and more efficient models.
-
-Improved training efficiency: Investigation into whether DPNs can achieve high performance while reducing the time and memory costs typically associated with larger, deeper networks.
+\begin{enumerate}
+\item \textbf{Introduction of Sarosh's Perceptron Networks (SPNs):} A novel neural network architecture framework that removes the connectivity constraints inherent to traditional MLP designs.
+\item \textbf{Empirical Evaluation:} A comprehensive comparison of SPNs with conventional MLPs to investigate whether enhanced neuron connectivity translates into improved model accuracy, training speed, and efficiency.
+\item \textbf{Enhanced Training Efficiency:} An investigation into the potential of SPNs to achieve superior performance while mitigating the computational and memory costs typically associated with increasing complexity and parameters in neural network architectures.
+\end{enumerate}
 
 %----------------------------------------------------------------------------------------
 
 \section{Research Questions}
 
 \begin{enumerate}[label={RQ\arabic*.}, leftmargin=*]
-    \item Do Sarosh's Perceptron Networks (SPNs) achieve better model performance than traditional Multi-Layer Perceptrons (MLPs)? \label{RQ1}
-    \item Does removing connectivity restrictions in neural networks enhance the learning capability of MLPs? \label{RQ2}
-    \item Can SPNs maintain strong performance with smaller network sizes, thus improving computational efficiency? \label{RQ3}
-    \item How do SPNs compare to traditional MLPs in terms of training time, memory usage, and model accuracy? \label{RQ4}
-    \item How does the increased flexibility of SPNs influence their ability to generalize across various datasets and tasks? \label{RQ5}
-    \item Can the high performance of fully connected SPNs be retained after optimization and reduction of connectivity, thereby achieving better computational efficiency and faster training times? \label{RQ6}
+    \item Does increasing connection density in Sarosh’s Perceptron Networks (SPNs), while keeping the layer count and design identical to MLPs, lead to better model performance? \label{RQ1}
+    \item Does removing connectivity restrictions in MLP architectures (allowing arbitrary neuron-to-neuron connections) enhance the network’s learning capability or representational power? \label{RQ2}
+    \item Can SPNs with fewer layers but higher connection density match or exceed the performance of deeper MLPs, thereby improving throughput efficiency and reducing training times? \label{RQ3}
+    \item How do SPNs compare to MLPs in terms of training time, computational efficiency, memory usage, and predictive accuracy across a range of datasets and tasks? \label{RQ4}
+    \item Does the increased architectural flexibility of SPNs improve their ability to generalize across diverse datasets and tasks compared to standard MLPs? \label{RQ5}
+    \item After maximizing connections in SPNs, can pruning strategies maintain high predictive performance while significantly improving computational efficiency and training time? \label{RQ6}
 \end{enumerate}
 
 %----------------------------------------------------------------------------------------
 
 \section{Scope and Limitations}
 
-This research focuses on Denser Perceptron Networks (DPNs) and evaluates their potential to enhance neural network performance through improved connectivity. The scope of the thesis is limited to the empirical comparison of DPNs with traditional MLPs on classification tasks.
+This research focuses on SPN's potential to enhance neural network performance through increased neuron connectivity. The primary scope of this thesis is the empirical evaluation of SPNs in comparison to traditional MLPs, with all experiments limited to supervised classification tasks.
 
 Key limitations include:
 
-Computational Constraints: DPNs, by design, involve a large number of connections, which may result in higher computational demands for training and inference. This research will focus on evaluating whether the performance gains from DPNs justify the computational cost.
-
-Task-specific Design: The results of this study may vary depending on the dataset and task. While the thesis focuses on classification tasks, the generalizability of DPNs to other types of tasks may require further investigation.
-
-Data Constraints: The experiments will be conducted using a set of standard datasets, and the findings may not fully apply to more complex or diverse real-world data.
+\begin{enumerate}
+\item \textbf{Computational Resources:}By design, SPNs introduce a significantly larger number of connections than standard MLPs, resulting in increased computational demands for both training and inference. This research primarily evaluates whether the potential improvements in model performance and expressiveness are sufficient to justify the additional computational cost. However, due to hardware constraints, some larger-scale configurations or extended hyperparameter sweeps may be beyond the feasible scope of experimentation.
+\item \textbf{Task and Domain Specificity:} The experiments and comparisons in this study are restricted to a selection of well-known benchmark datasets for classification. As such, the observed results may be influenced by the characteristics of these datasets, and the findings may not fully generalize to other domains (such as regression, reinforcement learning, or unsupervised tasks) or to highly complex, real-world data distributions.
+\item \textbf{Scope of Architectural Exploration:} The present study is limited to comparisons between SPNs and traditional MLPs. It does not extend to specialized neural network architectures such as CNNs, ResNets, Recurrent Neural Networks (RNNs)~\cite{lipton2015critical}, Vision Transformers (ViTs)~\cite{dosovitskiy2020image}, or LLMs. As a result, the boundaries of SPN expressiveness and their potential for integration with these advanced architectures remain unexplored. Further research will be required to evaluate the applicability and benefits of SPNs in the context of these specialized models.
+\end{enumerate}
 
 %----------------------------------------------------------------------------------------
 
@@ -95,10 +81,9 @@ Data Constraints: The experiments will be conducted using a set of standard data
 
 The remainder of this thesis is organized as follows:
 \begin{enumerate}
-    \item Chapter \ref{LiteratureReview} presents a literature review on the existing research on continual learning and the different methods proposed for the mitigation of catastrophic forgetting.
-    \item Chapter \ref{Methodology} describes the methodology used in the research, including the method for data preparation, preprocessing, fine-tuning, implementation of the mitigation approach, and the evaluation with different benchmarks.
-    \item Chapter \ref{Experiments} describes the different experiments carried out as part of this study, along with the different ablations performed.
-    \item Chapter \ref{Results} involves the analysis of the results obtained from the experiments.
-    \item Chapter \ref{Conclusion} summarizes the findings of the thesis work and suggests directions for future work.
-
+    \item Chapter \ref{LiteratureReview} presents a comprehensive literature review, covering traditional Multi-Layer Perceptrons (MLPs), neural architecture search (NAS), ResNets and pruning methods and the Lottery Ticket Hypothesis.
+    \item Chapter \ref{Methodology} details the methodology used in this research, including the design and implementation of SPNs.
+    \item Chapter \ref{Experiments} describes the the experimental setup, dataset selection, model selection, training procedures, and evaluation metrics.
+    \item Chapter \ref{Results} presents the results and analysis of empirical comparisons between SPNs and traditional MLPs across multiple benchmark classification datasets.
+    \item Chapter \ref{Conclusion} concludes the thesis by summarizing the key findings, and proposing directions for future research in neural architecture optimization and SPN applications.
 \end{enumerate}

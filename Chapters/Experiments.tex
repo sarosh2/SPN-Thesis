@@ -134,8 +134,14 @@ Model performance on each dataset was evaluated using the following metrics:
 \item \textbf{Best Test Accuracy}: The highest accuracy achieved on the testing dataset across all epochs.
 \item \textbf{Time To Best Test Accuracy}: The cumulative training duration required to reach the epoch where the highest test accuracy was observed.
 \item \textbf{Training Efficiency}: The ratio of the best test accuracy to the total training time required to achieve that accuracy. This metric demonstrates how quickly the model reaches its optimal performance and how effective that peak performance is.
+    \[
+    \text{Training Efficiency} = \frac{\text{Best Test Accuracy}}{\text{Time to Best Test Accuracy}}
+    \]
 \item \textbf{Area Under Curve (AUC) Efficiency}: The area under the test accuracy-time curve, reflecting how rapidly the model achieves high accuracy levels.
 \item \textbf{Throughput Efficiency}: The ratio of the best test accuracy achieved to the average training time per epoch. This metric indicates the model's computational throughput and its effectiveness in achieving high performance with that throughput.
+    \[
+    \text{Throughput Efficiency} = \frac{\text{Best Test Accuracy}}{\text{Mean Epoch Time}}
+    \]
 \end{enumerate}
 
 In addition to evaluating model performance on each dataset, several other aspects were considered.
@@ -146,7 +152,10 @@ In addition to evaluating model performance on each dataset, several other aspec
 \item \textbf{Batch Size and Training Epochs}: Since both metrics can affect training time, they were kept consistent across all models.
 \item \textbf{Pruning time for pruned maximal SPNs.}
 \item \textbf{Number of layers before and after pruning.}
-\item \textbf{Pruning effectiveness}: This was measured as the ratio between the mean epoch time of the max\_spn and the mean epoch time of the pruned\_spn. It reflects how fast the pruned\_spn is compared to the max\_spn.
+\item \textbf{Pruning effectiveness}: This was measured as the ratio between the mean epoch time of the Maximal SPN and the mean epoch time of the Pruned SPN. It reflects how fast the Pruned SPN is compared to the Maximal SPN.
+    \[
+    \text{Pruning Effectiveness} = \frac{\text{Mean Epoch Time of Max SPN}}{\text{Mean Epoch Time of Pruned SPN}}
+    \]
 \end{enumerate}
 
 Together, these metrics enable us to address \ref{RQ4} and perform a comprehensive analysis of SPNs versus MLPs, considering time complexity, space complexity, and performance accuracy.

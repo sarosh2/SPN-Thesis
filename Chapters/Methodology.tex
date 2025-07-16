@@ -82,7 +82,7 @@ In this representation, the nonzero weights appear in diagonal arragned blocks, 
 
 This visualization also makes it evident that both the left and right regions outside the blocks are completely empty. The empty region on the left corresponds to the absence of cross-layer connections, while the empty region on the right reflects the lack of intra-layer connections within the same layer.
 
-Examining the weight matrix further, we notice that the right side of the matrix effectively determines the model’s number of layers. If we begin populating this region by introducing intra-layer connections, we break the independence that typically defines neurons within the same layer. This dependency essentially splits the original layer into multiple distinct layers, as the presence of such connections means neurons are no longer independent. Intuitively, this aligns with the conventional understanding that neurons within a layer should not interact directly.
+Examining the weight matrix further, we notice that the right side of the matrix effectively determines the model’s number of layers. If we begin populating this region by introducing intra-layer connections, we break the independence that typically defines neurons within the same layer. Adding this dependency thus splits the original layer into multiple distinct layers. Intuitively, this aligns with the conventional understanding that neurons within a layer should not interact directly.
 
 Adding weights to either the left or right of the existent MLP blocks transforms the classic MLP structure into a Sarosh’s Perceptron Network.
 
@@ -131,12 +131,12 @@ Additionally, by adding weights to the right side of the diagonal blocks, the we
 
 Since maximal SPNs can have an excessive number of layers and consequently, poor throughput, one potential solution is \textbf{pruning}. The Lottery Ticket Hypothesis posits that over 90\% of weights in a network can be removed while still achieving performance comparable to the original network, suggesting the existence of a subnetwork within the initial network that is equally trainable~\cite{frankle2018lottery}.
 
-Applying this principle, if we prune a maximal SPN, zeroing out selected weights on the rightmost edges of the staircase weight matrix, we effectively reduce dependencies between certain neurons as illustrated in figure \ref{fig:pruningMaxSPN}. This reduction allows for the merging of independent neurons into shared layers, thus reintroducing parallelism to the network while maintaining its high expressiveness and capacity for learning complex data patterns.
+Applying this principle, if we prune a maximal SPN, zeroing out selected weights on the rightmost edges of the staircase weight matrix, we effectively reduce dependencies between certain neurons as illustrated in Figure \ref{fig:pruningMaxSPN}. This reduction allows for the merging of independent neurons into shared layers, thus reintroducing parallelism to the network while maintaining its high expressiveness and capacity for learning complex data patterns.
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=0.7\textwidth]{Figures/Methodology/pruning_max_spn.png}
-\caption{Prunin a Maximal SPN.}
+\caption{Pruning a Maximal SPN.}
 \label{fig:pruningMaxSPN}
 \end{figure}
 
@@ -154,7 +154,7 @@ At the conclusion of this procedure, neurons that have become independent as a r
 
 At the other end of the spectrum, if our goal is to minimize the number of layers while maximizing connectivity, we arrive at the concept of minimal SPNs. This involves organizing the network with as few layers as possible and enriching them with free weights.
 
-Theoretically, the most minimal architecture would be a single perceptron, or for multi-class classification, a single layer with as many neurons as there are output classes ($o$). However, for this analysis, we assume a fixed total number of neurons ($n$) and seek to arrange them into layers to minimize throughput. This leads to two possible scenarios:
+Theoretically, the most minimal architecture would be a single perceptron, or for multiclass classification, a single layer with as many neurons as there are output classes ($o$). However, for this analysis, we assume a fixed total number of neurons ($n$) and seek to arrange them into layers to minimize throughput. This leads to two possible scenarios:
 
 \begin{enumerate}
     \item When the total number of neurons equals the output size ($n = o$): Only a single output layer of size $o$ is possible, with no opportunity for cross-layer connections.
@@ -208,7 +208,7 @@ While this approach is conceptually simple and flexible, it is computationally e
 
 \subsection{Sequential Representation}
 
-In this approach, we describe the SPN using a list of weights, where every element in the list corresponds to the weights of a single neuron, exactly how it was illustrated in figure \ref{fig:maxSpn}.
+In this approach, we describe the SPN using a list of weights, where every element in the list corresponds to the weights of a single neuron, exactly how it was illustrated in Figure \ref{fig:maxSpn}.
  
 Such a network contains all possible connections for a given number of neurons. Therefore, any other network with the same number of neurons is a subnetwork of this complete network. To process this network, neurons are processed sequentially, starting from the first element in the list up to the last. For each step, the output of a neuron is appended to its input, providing the input for the subsequent neuron. By doing so, we eliminate the need to add partial inputs for each neuron individually. Instead, the same input can be compounded across the forward pass.
 
@@ -223,7 +223,7 @@ While this method eliminates the propagation step from every neuron to its subse
 
 \subsection{Block-based Representation}
 
-When considering the weight matrix of a Maximal SPN, we can draw vertical lines at the edge of each neuron’s weight vector, forming vertical blocks within the matrix. The largest block, which is the first block, contains the weights corresponding to the input features, and subsequent blocks contain the weights for the output of each neuron as showin in figure \ref{fig:blockMaxSpn}.
+When considering the weight matrix of a Maximal SPN, we can draw vertical lines at the edge of each neuron’s weight vector, forming vertical blocks within the matrix. The largest block, which is the first block, contains the weights corresponding to the input features, and subsequent blocks contain the weights for the output of each neuron as showin in Figure \ref{fig:blockMaxSpn}.
  
 Rather than processing each neuron’s weight vector individually, this approach processes the network one block at a time. The top-most neuron’s forward pass is completed first, followed by calculating partial outputs for the remaining neurons. This method improves the time complexity by prioritizing the heaviest calculations (typically when the hardware is under lower load), and adds slight parallelization, as an input value is accessed only once, rather than repeatedly in a sequential approach.
 

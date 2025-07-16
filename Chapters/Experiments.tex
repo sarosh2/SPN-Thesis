@@ -55,7 +55,7 @@ Matplotlib & 3.9.4 \\
 
 To address \ref{RQ5}, the experiments were structured across three distinct domains: images, tabular data, and language data. For each domain, two datasets were chosen. One, referred to as the simple variant, had fewer input features and training samples, while the complex variant had more. This approach allowed a comprehensive evaluation of SPN performance across varying complexity and data modalities.
 
-For binary classification tasks, the number of classes was set to 2 as it allowed us to use the same optimizer (ADAM) and loss function (CrossEntropy Loss) as the multi-class classification tasks.
+For binary classification tasks, the number of classes was set to 2 as it allowed us to use the same optimizer (ADAM) and loss function (CrossEntropy Loss) as the multiclass classification tasks.
 
 \subsubsection{Image Datasets}
 For the image domain, the MNIST dataset served as the simpler variant. MNIST consists of 70,000 grayscale images of handwritten digits from 0–9, with 60,000 images allocated for training and 10,000 images reserved for testing. Each image is represented by 784 pixel features. 
@@ -70,11 +70,11 @@ The complex variant selected was the Covertype dataset, which aims to predict fo
 \subsubsection{Language Datasets}
 For text-based tasks, the simple variant was the 20 Newsgroups dataset, comprising approximately 20,000 newsgroup documents categorized into 20 distinct topics such as politics, technology, and sports. The dataset is split into 13,000 training samples and 5,600 testing samples. 
 
-The complex variant was the IMDB Reviews dataset, containing 50,000 movie reviews equally divided into 25,000 training and 25,000 test samples, each labeled with a positive or negative sentiment, making it a binary classification task. Text data in both datasets were standardized to 5,000 features using TF-IDF vectorization.
+The complex variant was the IMDb Reviews dataset, containing 50,000 movie reviews equally divided into 25,000 training and 25,000 test samples, each labeled with a positive or negative sentiment, making it a binary classification task. Text data in both datasets were standardized to 5,000 features using TF-IDF vectorization.
 
 \subsubsection{Summary}
 
-Across the tabular and language datasets, we selected a combination of simple and complex datasets: the Titanic dataset and the IMDB dataset for binary classification, and the Newsgroups dataset and the Covertype dataset for multi-class classification. This selection allows for a comprehensive evaluation of SPNs and MLPs across binary and multi-class classification tasks of varying complexity. Regression tasks were excluded from these tests to avoid introducing additional variables, ensuring a more focused and reliable comparison between MLPs and SPNs.
+Across the tabular and language datasets, we selected a combination of simple and complex datasets: the Titanic dataset and the IMDb dataset for binary classification, and the Newsgroups dataset and the Covertype dataset for multiclass classification. This selection allows for a comprehensive evaluation of SPNs and MLPs across binary and multiclass classification tasks of varying complexity. Regression tasks were excluded from these tests to avoid introducing additional variables, ensuring a more focused and reliable comparison between MLPs and SPNs.
 
 Table \ref{tab:dataSummary} outlines a summary of all the datasets used in our experiments.
 
@@ -87,11 +87,11 @@ Table \ref{tab:dataSummary} outlines a summary of all the datasets used in our e
     \textbf{Name} & \textbf{Domain} & \textbf{Variant} & \textbf{In size} & \textbf{Classes} & \textbf{Train Size} & \textbf{Test Size} \\
     \hline
     MNIST & Image & Simple & 784 & 10 & 60000 & 10000 \\
-    CIFAR 10 & Image & Complex & 3072 & 10 & 50000 & 10000 \\
+    CIFAR-10 & Image & Complex & 3072 & 10 & 50000 & 10000 \\
     Titanic & Tabular & Simple & 7 & 2 & 712 & 179 \\
     Covertype & Tabular & Complex & 54 & 7 & 88314 & 22079 \\
     Newsgroups 20 & Language & Simple & 5000 & 20 & 13192 & 5654 \\
-    IMDB Reviews & Language & complex & 5000 & 2 & 25000 & 25000 \\
+    IMDb Reviews & Language & complex & 5000 & 2 & 25000 & 25000 \\
     \hline
   \end{tabular}
 
@@ -108,7 +108,7 @@ The following six model architectures were tested for each dataset. Since the ex
 \begin{enumerate}
 \item \textbf{Baseline MLP}: A conventional MLP was used as a control benchmark. Preliminary tests revealed that the best-performing MLP models achieved test accuracies exceeding 90\% across most datasets, but required extensive training times, leaving a minimal margin for improvements. Since the primary goal of the experiments was to assess the effects of varying neural connectivity, smaller MLPs that still performed adequately were selected, allowing the potential benefits of SPNs to be more clearly observed.
 \item \textbf{Free Weights SPN}: An SPN that mirrors the layer structure of the baseline MLP, but with the addition of free weights; dense skip connections to all preceding layers. This model serves as a modified version of the baseline MLP, specifically designed to address \ref{RQ1}, enabling a direct examination of the effects of increased connection density.
-\item \textbf{Mininal SPN}: To address \ref{RQ3}, the minimal SPN is a simplified two-layer architecture designed to maximize throughput while minimizing structural complexity. This model aims to optimize training time and allows us to investigate whether reducing the number of layers in a densely connected SPN can still deliver sufficient performance to justify the trade-off against multi-layer complexity.
+\item \textbf{Minimal SPN}: To address \ref{RQ3}, the minimal SPN is a simplified two-layer architecture designed to maximize throughput while minimizing structural complexity. This model aims to optimize training time and allows us to investigate whether reducing the number of layers in a densely connected SPN can still deliver sufficient performance to justify the trade-off against multi-layer complexity.
 \item \textbf{Minimal MLP}: are structurally similar to minimal SPNs, but they lack the denser connectivity inherent to SPNs. This model allows us to explore whether the potential benefits of minimal SPNs are exclusive to that architecture, or if similar advantages can be achieved with a similarly structured MLP. Like the baseline MLP and the Free Weights SPN, the minimal MLP and SPN models provide valuable insights into the distinctions between SPNs and MLPs, helping to address \ref{RQ1}.
 \item \textbf{Maximal SPN}: are designed to maximize all connections between perceptrons for a given number of neurons. These models aim to address \ref{RQ2} by determining the upper performance threshold, while fully sacrificing efficiency and training time constraints in the pursuit of accuracy.
 \item \textbf{Pruned Maximal SPN}: aim to preserve the performance of Maximal SPNs while optimizing training time. Maximal SPNs undergo a pruning process where zeroed-out weights are eliminated, leading to some neurons being disconnected. These disconnected neurons are subsequently merged into layers, enhancing the time complexity of the model. This approach addresses \ref{RQ6} and allows us to explore the possibility of optimizing maximal MLPs for time efficiency without compromising their higher performance accuracy.
@@ -121,7 +121,7 @@ The following six model architectures were tested for each dataset. Since the ex
 
 \section{Experimental Procedure}
 
-Each model was trained systematically over multiple epochs, with training time per epoch, training time per mini batch, average ttraining accuracy, training loss, test accuracy, and test loss recorded at each epoch.
+Each model was trained systematically over multiple epochs, with training time per epoch, training time per mini batch, average training accuracy, training loss, test accuracy, and test loss recorded at each epoch.
 
 Hyperparameters were fine-tuned through preliminary experimentation to identify optimal learning rates and batch sizes, with the goal of minimizing overfitting while maximizing training efficiency. The final set of hyperparameters enabled a robust comparative analysis across different architectures.
 

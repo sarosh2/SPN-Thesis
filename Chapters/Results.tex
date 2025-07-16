@@ -132,7 +132,7 @@ However, since max\_spn did not outperform any of the other models, it suggests 
 
 Overall, SPNs convincingly outperformed their MLP counterparts on the MNIST dataset. Maximal and pruned SPNs confirmed the existence of an upper performance bound, highlighting the effectiveness of strategic pruning to balance accuracy and efficiency.
 
-\subsection{CIFAR 10 Dataset}
+\subsection{CIFAR-10 Dataset}
 
 \begin{tabular}{@{}ll@{}}
 \textbf{Variant} & Complex \\
@@ -150,7 +150,7 @@ Overall, SPNs convincingly outperformed their MLP counterparts on the MNIST data
     \centering
     \includegraphics[width=1.0\textwidth]{Figures/Results/CIFAR_10/examples.png} 
     \captionsetup{justification=centering}  % Ensure the caption is centered
-    \caption{Example Images in CIFAR 10}
+    \caption{Example Images in CIFAR-10}
     \label{fig:cifarexamples}
 \end{figure}
 
@@ -162,7 +162,7 @@ Although data augmentation and regularization techniques were applied in initial
     \centering
     \includegraphics[width=1.0\textwidth]{Figures/Results/CIFAR_10/CIFAR_base_mlp_architecture.png} 
     \captionsetup{justification=centering}  % Ensure the caption is centered
-    \caption{base\_mlp architecture for CIFAR 10}
+    \caption{base\_mlp architecture for CIFAR-10}
     \label{fig:cifarMlpBaseArch}
 \end{figure}
 
@@ -172,7 +172,7 @@ The training curve in Figure \ref{fig:cifarTrainCurve} follows the expected tren
     \centering
     \includegraphics[width=\linewidth]{Figures/Results/CIFAR_10/training_accuracy_plot.png} % first figure itself
     \captionsetup{width=\linewidth}
-    \caption{train\_acc vs epochs curve for CIFAR 10}
+    \caption{train\_acc vs epochs curve for CIFAR-10}
     \label{fig:cifarTrainCurve}
 \end{figure}
 
@@ -180,13 +180,13 @@ The training curve in Figure \ref{fig:cifarTrainCurve} follows the expected tren
     \centering
     \includegraphics[width=\linewidth]{Figures/Results/CIFAR_10/test_accuracy_plot.png} % second figure itself
     \captionsetup{width=\linewidth}
-    \caption{test\_acc vs epochs curve for CIFAR 10}
+    \caption{test\_acc vs epochs curve for CIFAR-10}
     \label{fig:cifarTestCurve}
 \end{figure}
 
 \begin{table}[h!]
     \centering
-    \caption{Cross Model Comparison on the CIFAR 10 Dataset}
+    \caption{Cross Model Comparison on the CIFAR-10 Dataset}
     \begin{tabular}{|l|l|l|l|l|l|l|}
     \hline
     \textbf{Model} & \textbf{param\_count} & \textbf{best\_acc} & \textbf{time\_best} & \textbf{train\_eff} & \textbf{auc\_eff} & \textbf{thru\_eff} \\
@@ -203,7 +203,7 @@ The training curve in Figure \ref{fig:cifarTrainCurve} follows the expected tren
 \end{table}
 
 \begin{enumerate}
-\item \textbf{Baseline MLP vs. Free Weights SPN}: The base\_mlp achieved the highest test accuracy, with the fw\_spn following closely behind. Additionally, base\_mlp demonstrated greater efficiency than fw\_spn, further underscoring the limitations of increasing internal connectivity in perceptron-based models. In complex datasets like CIFAR 10, where spatial relationships are lost during flattening, increasing connections primarily leads to greater overfitting rather than better generalization, making the less-connected base\_mlp the better choice.
+\item \textbf{Baseline MLP vs. Free Weights SPN}: The base\_mlp achieved the highest test accuracy, with the fw\_spn following closely behind. Additionally, base\_mlp demonstrated greater efficiency than fw\_spn, further underscoring the limitations of increasing internal connectivity in perceptron-based models. In complex datasets like CIFAR-10, where spatial relationships are lost during flattening, increasing connections primarily leads to greater overfitting rather than better generalization, making the less-connected base\_mlp the better choice.
 \item \textbf{Minimal MLP vs. Minimal SPN}: A similar trend was observed with the smaller models, min\_mlp attained the second-highest test accuracy and overall efficiency, while min\_spn recorded the lowest test accuracy. This further supports the conclusion that, in scenarios prone to overfitting, additional connections can degrade model performance.
 \item \textbf{Maximal SPN}: The max\_spn model achieved only moderate test accuracy, indicating that increasing model depth or complexity does not translate to improved results for perceptron-based models on CIFAR-10. This suggests that such architectures are inherently limited in capturing the complex relationships present in image data.
 \item \textbf{Pruned SPN}:
@@ -337,7 +337,7 @@ Overall, the small dataset size limited our ability to observe strong evidence t
 
 For preprocessing, the numeric columns were normalized, and the categorical features for soil types 1–40 were encoded as binary variables.
 
-Early testing revealed that bigger MLPs achieved competitive accuracy on this dataset, comparable to the results reported on the leaderboards~\cite{kaggle_covertype_leaderboard}. And since the test accuracy was closer to 80\%, a three-layer MLP of substantial size was selected for further experiments as there was signifcant room for observing improvements, if any were made by using SPN techniques.
+Early testing revealed that bigger MLPs achieved competitive accuracy on this dataset, comparable to the results reported on the leaderboards~\cite{kaggle_covertype_leaderboard}. And since the test accuracy was closer to 80\%, a three-layer MLP of substantial size was selected for further experiments as there was significant room for observing improvements, if any were made by using SPN techniques.
 
 \begin{figure}[H]
     \centering
@@ -502,7 +502,7 @@ While pruned\_spn outperforms max\_spn across all metrics, its pruning time is n
 
 Overall, this dataset proved to be the most interesting so far. It was the first instance where the minimal models outperformed their more complex, deeper counterparts. At the same time, the benefits of increased connectivity were clearly demonstrated, with both min\_spn and fw\_spn surpassing their respective MLP counterparts. These results suggest that SPNs may not only enhance performance but also provide insights into the optimal layer complexity and connection density needed for a given dataset.
 
-\subsection{IMDB Reviews Dataset}
+\subsection{IMDb Reviews Dataset}
 
 \begin{tabular}{@{}ll@{}}
 \textbf{Variant} & Complex \\
@@ -523,7 +523,7 @@ Preliminary tests on this dataset revealed overfitting issues similar to those o
     \centering
     \includegraphics[height=0.28\textheight,width=0.6\textwidth]{Figures/Results/IMDB/IMDB_base_mlp_architecture.png} 
     \captionsetup{justification=centering}  % Ensure the caption is centered
-    \caption{base\_mlp architecture for IMDB Reviews}
+    \caption{base\_mlp architecture for IMDb Reviews}
     \label{fig:imdbMlpBaseArch}
 \end{figure}
 
@@ -533,7 +533,7 @@ The training curve in Figure \ref{fig:imdbTrainCurve} closely resembles that of 
     \centering
     \includegraphics[width=\linewidth]{Figures/Results/IMDB/training_accuracy_plot.png} % first figure itself
     \captionsetup{width=\linewidth}
-    \caption{train\_acc vs epochs curve for IMDB Reviews}
+    \caption{train\_acc vs epochs curve for IMDb Reviews}
     \label{fig:imdbTrainCurve}
 \end{figure}
 
@@ -541,13 +541,13 @@ The training curve in Figure \ref{fig:imdbTrainCurve} closely resembles that of 
     \centering
     \includegraphics[width=\linewidth]{Figures/Results/IMDB/test_accuracy_plot.png} % second figure itself
     \captionsetup{width=\linewidth}
-    \caption{test\_acc vs epochs curve for IMDB Reviews}
+    \caption{test\_acc vs epochs curve for IMDb Reviews}
     \label{fig:imdbTestCurve}
 \end{figure}
 
 \begin{table}[h!]
     \centering
-    \caption{IMDB Reviews Dataset results}
+    \caption{IMDb Reviews Dataset results}
     \begin{tabular}{|l|l|l|l|l|l|l|}
     \hline
     \textbf{Model} & \textbf{param\_count} & \textbf{best\_acc} & \textbf{time\_best} & \textbf{train\_eff} & \textbf{auc\_eff} & \textbf{thru\_eff} \\
@@ -599,7 +599,7 @@ Across the majority of experiments, especially for the MNIST image dataset and b
 
 \subsection*{RQ2: Does removing connectivity restrictions in MLP architectures (allowing arbitrary neuron-to-neuron connections) enhance the network’s learning capability or representational power?}
 
-The results affirm that lifting connectivity restrictions enhances both representational capacity and learning ability. In both simple and complex tabular datasets, SPNs consistently demonstrated better performance, as indicated by higher best test accuracy and area under curve efficiency. However, in highly complex domains such as CIFAR-10 and IMDB Reviews, the representational advantage of SPNs was limited by the fundamental capabilities of perceptron-based models, which struggle to capture spatial or semantic relationships lost during input flattening or vectorization. Thus, while enhanced connectivity is powerful, its effectiveness is domain-dependent.
+The results affirm that lifting connectivity restrictions enhances both representational capacity and learning ability. In both simple and complex tabular datasets, SPNs consistently demonstrated better performance, as indicated by higher best test accuracy and area under curve efficiency. However, in highly complex domains such as CIFAR-10 and IMDb Reviews, the representational advantage of SPNs was limited by the fundamental capabilities of perceptron-based models, which struggle to capture spatial or semantic relationships lost during input flattening or vectorization. Thus, while enhanced connectivity is powerful, its effectiveness is domain-dependent.
 
 \subsection*{RQ3: Can SPNs with fewer layers but higher connection density match or exceed the performance of deeper MLPs, thereby improving throughput efficiency and reducing training times?}
 
@@ -611,7 +611,7 @@ SPNs generally require more memory due to their larger parameter count, as seen 
 
 \subsection*{RQ5: Does the increased architectural flexibility of SPNs improve their ability to generalize across diverse datasets and tasks compared to standard MLPs?}
 
-The experimental results show that SPNs' flexibility improves generalization in many settings, particularly for tabular and structured datasets. The ability to learn from more complex feature interactions enables SPNs to adapt to different data distributions, resulting in more robust performance across tasks. However, for highly unstructured or semantically complex tasks, such as image classification in CIFAR-10 or sentiment analysis in IMDB Reviews, the generalization advantage of SPNs diminishes, and specialized architectures remain superior.
+The experimental results show that SPNs' flexibility improves generalization in many settings, particularly for tabular and structured datasets. The ability to learn from more complex feature interactions enables SPNs to adapt to different data distributions, resulting in more robust performance across tasks. However, for highly unstructured or semantically complex tasks, such as image classification in CIFAR-10 or sentiment analysis in IMDb Reviews, the generalization advantage of SPNs diminishes, and specialized architectures remain superior.
 
 \subsection*{RQ6: After maximizing connections in SPNs, can pruning strategies maintain high predictive performance while significantly improving computational efficiency and training time?}
 

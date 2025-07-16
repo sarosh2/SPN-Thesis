@@ -16,7 +16,9 @@ This chapter begins with an overview of the field of Neural Architecture Search 
 
 \section{Neural Architecture Search (NAS)}
 
-Neural Architecture Search (NAS) is an automated method for optimizing neural network architectures. The primary objective of NAS is to find an optimal architecture that provides the best trade-off between model performance (accuracy) and resource usage (computational efficiency, parameter count, and memory usage) \cite{elsken2019neural}. NAS has significantly contributed to the advancement of deep learning by automating architecture design, traditionally a manually intensive process.
+Neural Architecture Search (NAS) is an automated method for optimizing neural network architectures. The primary objective of NAS is to find an optimal architecture that provides the best trade-off between model performance (accuracy) and resource usage (computational efficiency, parameter count, and memory usage)~\cite{elsken2019neural}. NAS has significantly contributed to the advancement of deep learning by automating architecture design, traditionally a manually intensive process.
+
+At its core, NAS operates by defining a \textit{search space}, a set of possible neural network components and connections from which candidate architectures can be constructed. The effectiveness of NAS heavily depends on how this search space is formulated, as it determines the diversity and expressiveness of potential solutions. To explore this search space, NAS utilizes various \textit{search strategies} to systematically generate, evaluate, and refine architectures based on their performance as shown in Figure \ref{fig:abstractNASMethods}. By iteratively searching and evaluating within this space, NAS aims to efficiently identify high-performing architectures that meet specific accuracy and efficiency criteria~\cite{wistuba2019survey,elsken2019neural}.
 
 \begin{figure}[h!]
     \centering
@@ -32,28 +34,38 @@ Neural Architecture Search (NAS) is an automated method for optimizing neural ne
 
 NAS techniques are broadly categorized into reinforcement learning (RL)-based methods, evolutionary algorithms (EA), and gradient-based optimization methods.
 
-\textbf{Reinforcement Learning-based NAS} techniques use an RL agent that generates neural architectures and updates its strategy based on rewards from evaluating the architectures \cite{zoph2016neural}. Notable examples include the work by Zoph and Le, where an RNN controller designs neural architectures \cite{zoph2016neural}.
+\begin{itemize}
+    \item \textbf{Reinforcement Learning-based NAS} approaches frame architecture search as a sequential decision-making problem. An RL agent, often implemented as a recurrent neural network (RNN) controller, generates candidate architectures and receives reward signals based on their performance after training. The controller's policy is updated to favor architectures yielding higher rewards. The seminal work by Zoph and Le~\cite{zoph2016neural} introduced this paradigm, achieving impressive results on image classification benchmarks. Further extensions have incorporated advanced RL algorithms such as Proximal Policy Optimization (PPO) and Q-learning~\cite{baker2016designing,pham2018efficient}. While RL-based NAS provides great flexibility and search space exploration, it is computationally expensive due to the need to train and evaluate many candidate architectures.
+    
+    \item \textbf{Evolutionary Algorithm-based NAS} methods draw inspiration from biological evolution, maintaining a population of candidate architectures that evolve over generations through operations such as mutation, crossover, and selection. Regularized Evolution~\cite{real2019regularized} demonstrated that EA-based NAS can yield high-performing and diverse architectures, even outperforming some RL-based methods in certain settings. Techniques like Aging Evolution and genetic programming~\cite{liu2017hierarchical,xie2017genetic} have been used to maintain population diversity and avoid premature convergence. EA-based approaches are known for robust global search capabilities, but often require significant computational resources.
+    
+    \item \textbf{Gradient-based NAS} methods, such as DARTS: Differentiable Architecture Search \cite{liu2018darts}, convert the discrete NAS problem into a continuous one, enabling efficient search via gradient descent. Architectures are parameterized in a way that allows gradients to flow through architectural choices, greatly reducing the search cost compared to RL and EA approaches. DARTS and its successors~\cite{cai2018proxylessnas,chen2019progressive} are popular for their scalability and efficiency, though they can be sensitive to hyperparameter choices and initialization, sometimes resulting in suboptimal or unstable architectures~\cite{zela2019understanding}.
+\end{itemize}
 
-\textbf{Evolutionary Algorithm-based NAS} methods use population-based optimization inspired by biological evolution, including mutation, crossover, and selection to evolve architectures \cite{real2019regularized}. Real et al. demonstrated that evolutionary methods could effectively evolve architectures that outperform manually designed ones \cite{real2019regularized}.
-
-\textbf{Gradient-based NAS} methods, such as Differentiable Architecture Search (DARTS), formulate NAS as a continuous optimization problem, allowing for efficient gradient-based optimization \cite{liu2018darts}. DARTS has become popular due to its efficiency in discovering competitive architectures with lower computational cost.
+Recent advances also include hybrid NAS approaches that combine multiple techniques (e.g., RL with gradient-based fine-tuning), meta-learning strategies, and hardware-aware NAS for deployment on edge devices~\cite{elsken2019neural,wistuba2019survey,tan2019mnasnet}. Furthermore, open-source frameworks such as Auto-Keras~\cite{jin2019auto}, ENAS~\cite{pham2018efficient}, and NAS-Bench-101~\cite{ying2019bench} have made NAS research more accessible and reproducible.
 
 \begin{table}[ht]
 \centering
 \caption{Comparison of NAS Techniques}
-\begin{tabular}{|c|c|c|}
+\begin{tabular}{|c|m{4cm}|m{4cm}|}
 \hline
 \textbf{Technique} & \textbf{Advantages} & \textbf{Disadvantages} \\
 \hline
-RL-based & High flexibility & Computationally expensive \\
+RL-based & Flexible search, can handle large, discrete spaces & Very computationally expensive; requires training many architectures \\
 \hline
-EA-based & Effective global search & Requires extensive evaluations \\
+EA-based & Robust global search, maintains diversity & Extensive evaluations required; can be slow to converge \\
 \hline
-Gradient-based & Efficient and scalable & Sensitive to initialization \\
+Gradient-based & Highly efficient, scalable, low search cost & Sensitive to initialization, may get stuck in local minima, can suffer from instability \\
+\hline
+Hybrid/Meta-learning & Combines strengths of various approaches, can leverage prior knowledge & Increased implementation complexity; may inherit disadvantages of base methods \\
 \hline
 \end{tabular}
 \label{tab:nas_techniques}
 \end{table}
+
+In the context of NAS, this thesis focuses on expanding the architectural search space for neural networks. As discussed in Chapter \ref{Methodology}, SPNs extend traditional MLPs by introducing additional connections, thereby increasing the diversity and flexibility of possible network topologies. By enabling more granular and unconstrained connectivity patterns, SPNs broaden the set of architectures that NAS can explore. This expanded search space provides NAS algorithms with greater expressive power, offering the potential to discover more effective and high-performing models that may not be achievable within the constraints of standard MLP architectures.
+
+For a comprehensive survey of NAS techniques, see~\cite{elsken2019neural,wistuba2019survey}. For practical implementations, refer to frameworks and benchmarks in~\cite{jin2019auto,pham2018efficient,ying2019bench}.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 2

@@ -78,7 +78,7 @@ Alternatively, the weights of an MLP can be represented as a single, large weigh
 \label{fig:mlpWeights}
 \end{figure}
 
-In this representation, the nonzero weights appear in diagonal arragned blocks, forming a staircase-like pattern that is separated along both axes. On the right side of the boxes, there is a theoretical boundary of connections. If any connections cross this boundary, it would form a cycle within the network where a neuron would be connected to itself (dependent on its own output). Thus, this boundary can never be crossed.
+In the representation in Figure \ref{fig:mlpWeights}, the nonzero weights appear in diagonal arragned blocks, forming a staircase-like pattern that is separated along both axes. On the right side of the boxes, there is a theoretical boundary of connections. If any connections cross this boundary, it would form a cycle within the network where a neuron would be connected to itself (dependent on its own output). Thus, this boundary can never be crossed.
 
 This visualization also makes it evident that both the left and right regions outside the blocks are completely empty. The empty region on the left corresponds to the absence of cross-layer connections, while the empty region on the right reflects the lack of intra-layer connections within the same layer.
 

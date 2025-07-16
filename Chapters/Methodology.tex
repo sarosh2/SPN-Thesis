@@ -10,7 +10,7 @@
 
 \section{Sarosh's Perceptron Networks (SPNs)}
 
-This chpater introduces the theoretical framework for Sarosh's Perceptron Networks (SPNs), designed to eliminate restrictions on neuron connectivity. The goal is to allow any two neurons to connect, forming a directed acyclic graph (DAG) like network (since cycles would cause deadlocks). This framework seeks to enhance neural networks by improving their connectivity while minimizing the associated increases in time and space complexities.
+This chapter introduces the theoretical framework for Sarosh's Perceptron Networks (SPNs), designed to eliminate restrictions on neuron connectivity. The goal is to allow any two neurons to connect, forming a directed acyclic graph (DAG) like network (since cycles would cause deadlocks). This framework seeks to enhance neural networks by improving their connectivity while minimizing the associated increases in time and space complexities.
  
 In theory, SPNs treat neurons as individual objects that can process inputs independently. These neurons may still depend on either the input data or other neurons for input, but the framework enables greater flexibility in forming connections across the network. Figure \ref{fig:exampleSPN} illustrates an arbitrary eample of such a network.
 
@@ -148,6 +148,8 @@ The pruning strategy adopted in the current SPN framework is inspired by the Lot
     \item Repeat this process iteratively for several cycles.
 \end{enumerate}
 
+This iterative process is repeated for a user-defined number of rounds, with the optimal number typically determined through empirical testing or validation. In each round, a fraction of the model’s lowest-magnitude weights are pruned, and the initial weights yielding the best performance are retained. This continues until up to 99\% of the weights have been removed. At the end of the process, the best-performing set of initial weights is used to construct the final pruned model.
+
 At the conclusion of this procedure, neurons that have become independent as a result of pruning are merged to reduce the overall layer count and improve throughput. It is important to note that merging is performed only after the entire pruning process has finished. Preliminary experiments revealed that merging neurons during pruning can alter the network's architecture in ways that negatively affect subsequent pruning steps, making the overall process less effective than waiting until pruning is complete.
 
 \subsection{Minimal SPNs}
@@ -210,7 +212,7 @@ While this approach is conceptually simple and flexible, it is computationally e
 
 In this approach, we describe the SPN using a list of weights, where every element in the list corresponds to the weights of a single neuron, exactly how it was illustrated in Figure \ref{fig:maxSpn}.
  
-Such a network contains all possible connections for a given number of neurons. Therefore, any other network with the same number of neurons is a subnetwork of this complete network. To process this network, neurons are processed sequentially, starting from the first element in the list up to the last. For each step, the output of a neuron is appended to its input, providing the input for the subsequent neuron. By doing so, we eliminate the need to add partial inputs for each neuron individually. Instead, the same input can be compounded across the forward pass.
+Such a network contains all possible connections for a given number of neurons. Therefore, any other network with the same number of neurons is a subnetwork of this complete network. To process this network, neurons are processed sequentially, starting from the first neuron in the list and proceeding to the last. For each step, the output of a neuron is appended to its input, providing the input for the subsequent neuron. By doing so, we eliminate the need to add partial inputs for each neuron individually. Instead, the same input can be compounded across the forward pass.
 
 This approach assumes a maximum connection for every neuron. Disconnecting two neurons is achieved by zeroing out the weight value for the output neuron corresponding to the input. This method resembles traditional MLP pruning, where weight values are zeroed out instead of being removed entirely.
 
